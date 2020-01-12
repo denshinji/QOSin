@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.mobile.qosin.Activity.LoginActivity;
+import com.mobile.qosin.Activity.MainActivity;
+
 import java.util.HashMap;
 
 public class SessionManager {
@@ -16,6 +19,9 @@ public class SessionManager {
     private static final String LOGIN = "IS_LOGIN";
     public static final String NAME = "NAME";
     public static final String EMAIL = "EMAIL";
+    public static final String USERNAME = "USERNAME";
+    public static final String NOTELP = "NOTELP";
+    public static final String INSTANSI = "INSTANSI";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -23,11 +29,14 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createSession(String name, String email){
+    public void createSession(String name, String email, String username, String notelp,String instansi){
 
         editor.putBoolean(LOGIN, true);
         editor.putString(NAME, name);
         editor.putString(EMAIL, email);
+        editor.putString(USERNAME, username);
+        editor.putString(NOTELP, notelp);
+        editor.putString(INSTANSI, instansi);
         editor.apply();
 
     }
@@ -50,7 +59,9 @@ public class SessionManager {
         HashMap<String, String> user = new HashMap<>();
         user.put(NAME, sharedPreferences.getString(NAME, null));
         user.put(EMAIL, sharedPreferences.getString(EMAIL, null));
-
+        user.put(USERNAME, sharedPreferences.getString(USERNAME, null));
+        user.put(NOTELP, sharedPreferences.getString(NOTELP, null));
+        user.put(INSTANSI, sharedPreferences.getString(INSTANSI, null));
         return user;
     }
 

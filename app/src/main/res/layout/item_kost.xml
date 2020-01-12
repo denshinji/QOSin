@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rv_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorback">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:elevation="3dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="130dp"
+            android:background="@drawable/box_cardleft" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/fame_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp">
+
+                <ImageView
+                    android:id="@+id/item_photo"
+                    android:layout_width="80dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="4dp"
+                    android:padding="1dp"
+                    android:scaleType="fitXY" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_item_photo"
+                    android:layout_width="100dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@color/colorHijau"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    tools:ignore="RtlHardcoded" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/item_namacontent"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_toEndOf="@+id/fame_img"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                android:text="Kost Buk Titin"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_harga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_namacontent"
+                android:layout_marginStart="60dp"
+                android:layout_toEndOf="@+id/item_rate"
+                android:text="Rp.1.000.000"
+                android:paddingLeft="4dp"
+                android:textStyle="bold"
+                android:paddingTop="1dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="1dp"
+                android:textColor="@color/colorHijau"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:id="@+id/item_mark"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/ic_location_on_black_24dp"
+                android:layout_toEndOf="@+id/fame_img"
+                android:layout_marginLeft="25dp"
+                android:layout_below="@id/item_namacontent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:id="@+id/item_rate"
+                android:layout_toEndOf="@+id/item_mark"
+                android:layout_marginLeft="2dp"
+                android:text="Pasar Baru"
+                android:layout_below="@id/item_namacontent" />
+
+            <TextView
+                android:id="@+id/item_deksripsi"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/item_harga"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/fame_img"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:padding="5dp"
+                android:paddingRight="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

@@ -5,122 +5,184 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".Activity.LoginActivity">
+
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/page_regist" />
+        android:background="@drawable/page_regist"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/r_bt_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.621">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginLeft="50dp"
+            android:layout_height="240dp"
+            android:background="@drawable/icon_input" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/r_layout_username"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="110dp"
+            android:textColorHint="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.521"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.377">
+
+            <EditText
+                android:id="@+id/r_in_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:inputType="textPersonName"
+                android:paddingTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/r_layout_name"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginLeft="-250dp"
+            android:textColorHint="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.521"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintVertical_bias="0.0">
+
+            <EditText
+                android:id="@+id/r_in_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Lengkap"
+                android:inputType="textPersonName"
+                android:paddingTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/r_layout_password"
+            android:layout_width="250dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorHijau"
+            android:layout_height="50dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="-250dp"
+            android:textColorHint="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.521"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintVertical_bias="0.031">
+
+            <EditText
+                android:id="@+id/r_in_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/r_layout_email"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="240dp"
+            android:layout_marginLeft="-250dp"
+            android:textColorHint="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.521"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/r_layout_email"
+            app:layout_constraintVertical_bias="0.031"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorHijau">
+
+            <EditText
+                android:id="@+id/r_in_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:paddingTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/r_layout_nama"
+        android:id="@+id/r_layout_nope"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:background="@drawable/r_nama"
-        android:paddingLeft="60dp"
-        android:paddingRight="20dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="-250dp"
         android:textColorHint="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.377">
-
-        <EditText
-            android:id="@+id/r_in_nama"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nama Lengkap"
-            android:inputType="textPersonName"
-            android:paddingTop="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/r_layout_nickname"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="9dp"
-        android:background="@drawable/r_nama"
-        android:paddingLeft="60dp"
-        android:paddingRight="20dp"
-        android:textColorHint="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/r_layout_nama"
-        app:layout_constraintVertical_bias="0.0">
-
-        <EditText
-            android:id="@+id/r_in_nickname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:inputType="textPersonName"
-            android:paddingTop="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/r_layout_email"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:background="@drawable/f_email"
-        android:paddingLeft="60dp"
-        android:paddingRight="20dp"
-        android:textColorHint="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/r_layout_nickname"
         app:layout_constraintVertical_bias="0.031">
 
         <EditText
-            android:id="@+id/r_in_email"
+            android:id="@+id/r_in_nope"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="text|textEmailAddress"
+            android:hint="No Telephone"
+            android:inputType="text|phone"
             android:paddingTop="5dp"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/r_layout_password"
+        <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/r_layout_instansi"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:background="@drawable/r_password"
-        android:paddingLeft="60dp"
-        android:paddingRight="20dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="-250dp"
         android:textColorHint="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/r_layout_email"
-        app:layout_constraintVertical_bias="0.031"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/colorHijau">
+        app:layout_constraintVertical_bias="0.031">
 
         <EditText
-            android:id="@+id/r_in_password"
+            android:id="@+id/r_in_instansi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
+            android:hint="Instansi"
+            android:inputType="textPersonName"
             android:paddingTop="5dp"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
-
+    </LinearLayout>
     <TextView
         android:id="@+id/r_bt_login"
         android:layout_width="wrap_content"
@@ -140,12 +202,12 @@
         android:layout_width="258dp"
         android:layout_height="38dp"
         android:background="@drawable/btn_regist"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="@+id/r_layout_password"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="@+id/r_layout_password"
-        app:layout_constraintTop_toBottomOf="@+id/r_layout_password"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintBottom_toBottomOf="@+id/r_bt_login"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.315" />
 
     <com.agrawalsuneet.dotsloader.loaders.LazyLoader
         android:id="@+id/r_pr"
@@ -156,12 +218,12 @@
         android:layout_margin="50dp"
         android:layout_marginTop="30dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/r_bt_login"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.974"
+        app:layout_constraintVertical_bias="0.82"
         app:lazyloader_animDur="800"
         app:lazyloader_dotsDist="10dp"
         app:lazyloader_dotsRadius="6dp"

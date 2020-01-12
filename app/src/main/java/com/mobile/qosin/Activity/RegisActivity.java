@@ -1,4 +1,4 @@
-package com.mobile.qosin;
+package com.mobile.qosin.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.mobile.qosin.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +31,7 @@ import java.util.Map;
 public class RegisActivity extends AppCompatActivity {
 
     private Button btn_regist;
-    private EditText nama,email,password,nickname;
+    private EditText nama,email,password,nickname,instansi,notelp;
     private TextView s_login;
     private LazyLoader pr;
     private String URL_REGIST = "https://qosin.id/register.php";
@@ -41,8 +42,10 @@ public class RegisActivity extends AppCompatActivity {
         setContentView(R.layout.activity_regis);
 
         btn_regist = findViewById(R.id.r_btn_regist);
-        nama = findViewById(R.id.r_in_nama);
-        nickname = findViewById(R.id.r_in_nickname);
+        nama = findViewById(R.id.r_in_name);
+        nickname = findViewById(R.id.r_in_username);
+        instansi = findViewById(R.id.r_in_instansi);
+        notelp = findViewById(R.id.r_in_nope);
         pr = findViewById(R.id.r_pr);
         LazyLoader loaders = new LazyLoader(RegisActivity.this, 30, 20, ContextCompat.getColor(RegisActivity.this, R.color.loader_selected),
                 ContextCompat.getColor(RegisActivity.this, R.color.loader_selected),
@@ -62,14 +65,13 @@ public class RegisActivity extends AppCompatActivity {
                 String mPass = password.getText().toString().trim();
                 String mNama = nama.getText().toString().trim();
                 String mEmail = email.getText().toString().trim();
+                String mInstansi = instansi.getText().toString().trim();
+                String mNotelp = notelp.getText().toString().trim();
 
-                if (!mUsername.isEmpty() || !mPass.isEmpty() || !mEmail.isEmpty() || !mNama.isEmpty() ) {
+                if (!mUsername.isEmpty() || !mPass.isEmpty() || !mEmail.isEmpty() || !mNama.isEmpty() || !mInstansi.isEmpty() || !mNotelp.isEmpty() ) {
                     Regist();
                 } else {
-                    nickname.setError("Please insert Nickname");
-                    password.setError("Please insert Password");
-                    nama.setError("Please insert Name");
-                    email.setError("Please insert Email");
+                    nickname.setError("REGISTRASI ERROR PERIKSA KEMBALI");
                 }
 
 
@@ -92,6 +94,8 @@ public class RegisActivity extends AppCompatActivity {
         final String nick = this.nickname.getText().toString().trim();
         final String emails = this.email.getText().toString().trim();
         final String passwords = this.password.getText().toString().trim();
+        final String notelp = this.notelp.getText().toString().trim();
+        final String instansi = this.instansi.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REGIST,
                 new Response.Listener<String>() {
@@ -129,10 +133,12 @@ public class RegisActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("name", nick);
-                params.put("nickname", name);
+                params.put("username", nick);
+                params.put("name", name);
                 params.put("email", emails);
                 params.put("password", passwords);
+                params.put("nohp", notelp);
+                params.put("instansi", instansi);
                 return params;
             }
         };

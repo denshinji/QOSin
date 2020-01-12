@@ -1,4 +1,4 @@
-package com.mobile.qosin;
+package com.mobile.qosin.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -20,6 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.mobile.qosin.R;
+import com.mobile.qosin.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,8 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (!mUsername.isEmpty() || !mPass.isEmpty()) {
                     Login(mUsername, mPass);
                 } else {
-                    username.setError("Please insert email");
-                    password.setError("Please insert password");
+                    username.setError("Masukan Username anda");
+                    password.setError("Masukan Password anda");
                 }
             }
         });
@@ -104,9 +106,12 @@ public class LoginActivity extends AppCompatActivity {
 
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
+                                    String username = object.getString("username").trim();
+                                    String notelp = object.getString("nope").trim();
+                                    String instansi = object.getString("instansi").trim();
 
 
-                                    sessionManager.createSession(name, email);
+                                    sessionManager.createSession(name, email, username, notelp, instansi);
                                     Toast.makeText(LoginActivity.this,"Welcome "+name,Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

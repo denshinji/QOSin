@@ -1,15 +1,15 @@
-package com.mobile.qosin;
+package com.mobile.qosin.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.LinearInterpolator;
-import android.widget.ProgressBar;
 
 import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
+import com.mobile.qosin.R;
+import com.mobile.qosin.SessionManager;
 
 public class SplashActivity extends AppCompatActivity {
 
