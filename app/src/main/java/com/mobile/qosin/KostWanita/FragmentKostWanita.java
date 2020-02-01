@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class FragmentKostWanita extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapter;
+    private ProgressBar pbw;
     private SearchView searchView;
     private List<Kost> KostList;
     ApiInterface apiInterface;
@@ -57,6 +59,7 @@ public class FragmentKostWanita extends Fragment {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
 
         recyclerView = view.findViewById(R.id.list_view);
+        pbw = view.findViewById(R.id.pb_frag_kost);
         searchView = view.findViewById(R.id.searchview);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -90,6 +93,8 @@ public class FragmentKostWanita extends Fragment {
     }
 
     public void getKost(){
+        pbw.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
 
         Call<List<Kost>> call = apiInterface.get_kost_wanita();
         call.enqueue(new Callback<List<Kost>>() {
@@ -99,13 +104,14 @@ public class FragmentKostWanita extends Fragment {
                 Log.i(MainActivity.class.getSimpleName(), response.body().toString());
                 adapter = new Adapter(KostList, getContext(), listener);
                 recyclerView.setAdapter(adapter);
+                pbw.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<List<Kost>> call, Throwable t) {
-                Toast.makeText(getContext(), "rp :"+
-                                t.getMessage().toString(),
+                Toast.makeText(getContext(), "Terjadi kesalahan saat memuat data, Coba periksa Koneksi Internet Anda",
                         Toast.LENGTH_SHORT).show();
             }
         });

@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -31,7 +32,7 @@ import java.util.HashMap;
  */
 public class Dashboard extends Fragment {
     private TextView nama,email;
-    private ImageView bt_kost;
+    private ImageButton bt_kost;
     private FloatingActionButton fab;
     private SessionManager sessionManager;
     public Dashboard() {
