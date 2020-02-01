@@ -21,7 +21,7 @@ public class SessionManager {
     public static final String EMAIL = "EMAIL";
     public static final String USERNAME = "USERNAME";
     public static final String NOTELP = "NOTELP";
-    public static final String INSTANSI = "INSTANSI";
+    public static final String JENIS_AKUN = "JENIS_AKUN";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -29,14 +29,14 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createSession(String name, String email, String username, String notelp,String instansi){
+    public void createSession(String jenis_akun, String name, String email, String username, String notelp){
 
         editor.putBoolean(LOGIN, true);
+        editor.putString(JENIS_AKUN, jenis_akun);
         editor.putString(NAME, name);
         editor.putString(EMAIL, email);
         editor.putString(USERNAME, username);
         editor.putString(NOTELP, notelp);
-        editor.putString(INSTANSI, instansi);
         editor.apply();
 
     }
@@ -48,7 +48,7 @@ public class SessionManager {
     public void checkLogin(){
 
         if (!this.isLoggin()){
-            Intent i = new Intent(context, LoginActivity.class);
+            Intent i = new Intent(context, MenuLogin.class);
             context.startActivity(i);
             ((MainActivity) context).finish();
         }
@@ -57,11 +57,11 @@ public class SessionManager {
     public HashMap<String, String> getUserDetail(){
 
         HashMap<String, String> user = new HashMap<>();
+        user.put(JENIS_AKUN, sharedPreferences.getString(JENIS_AKUN, null));
         user.put(NAME, sharedPreferences.getString(NAME, null));
         user.put(EMAIL, sharedPreferences.getString(EMAIL, null));
         user.put(USERNAME, sharedPreferences.getString(USERNAME, null));
         user.put(NOTELP, sharedPreferences.getString(NOTELP, null));
-        user.put(INSTANSI, sharedPreferences.getString(INSTANSI, null));
         return user;
     }
 
@@ -69,7 +69,7 @@ public class SessionManager {
 
         editor.clear();
         editor.commit();
-        Intent i = new Intent(context, LoginActivity.class);
+        Intent i = new Intent(context, MenuLogin.class);
         context.startActivity(i);
 
     }

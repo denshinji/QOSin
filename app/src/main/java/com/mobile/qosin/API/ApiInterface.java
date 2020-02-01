@@ -16,4 +16,7 @@ public interface ApiInterface {
     @POST("get_kost_pria.php")
     Call<List<Kost>> getPets();
 
+    @POST("get_kost_wanita.php")
+    Call<List<Kost>> get_kost_wanita();
+
 }

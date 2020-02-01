@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,9 +32,11 @@ import java.util.Map;
 public class RegisActivity extends AppCompatActivity {
 
     private Button btn_regist;
-    private EditText nama,email,password,nickname,instansi,notelp;
-    private TextView s_login;
-    private LazyLoader pr;
+    private ProgressBar pr;
+    private EditText nama,email,password,nickname,notelp;
+
+
+
     private String URL_REGIST = "https://qosin.id/register.php";
 
     @Override
@@ -44,18 +47,10 @@ public class RegisActivity extends AppCompatActivity {
         btn_regist = findViewById(R.id.r_btn_regist);
         nama = findViewById(R.id.r_in_name);
         nickname = findViewById(R.id.r_in_username);
-        instansi = findViewById(R.id.r_in_instansi);
-        notelp = findViewById(R.id.r_in_nope);
         pr = findViewById(R.id.r_pr);
-        LazyLoader loaders = new LazyLoader(RegisActivity.this, 30, 20, ContextCompat.getColor(RegisActivity.this, R.color.loader_selected),
-                ContextCompat.getColor(RegisActivity.this, R.color.loader_selected),
-                ContextCompat.getColor(RegisActivity.this, R.color.loader_selected));
-        pr.setAnimDuration(500);
-        pr.setFirstDelayDuration(10);
-        pr.setSecondDelayDuration(25);
-        pr.setInterpolator(new LinearInterpolator());
+        notelp = findViewById(R.id.r_in_nope);
 
-        pr.addView(loaders);
+
         email = findViewById(R.id.r_in_email);
         password = findViewById(R.id.r_in_password);
         btn_regist.setOnClickListener(new View.OnClickListener() {
@@ -65,10 +60,9 @@ public class RegisActivity extends AppCompatActivity {
                 String mPass = password.getText().toString().trim();
                 String mNama = nama.getText().toString().trim();
                 String mEmail = email.getText().toString().trim();
-                String mInstansi = instansi.getText().toString().trim();
                 String mNotelp = notelp.getText().toString().trim();
 
-                if (!mUsername.isEmpty() || !mPass.isEmpty() || !mEmail.isEmpty() || !mNama.isEmpty() || !mInstansi.isEmpty() || !mNotelp.isEmpty() ) {
+                if (!mUsername.isEmpty() || !mPass.isEmpty() || !mEmail.isEmpty() || !mNama.isEmpty() ||  !mNotelp.isEmpty() ) {
                     Regist();
                 } else {
                     nickname.setError("REGISTRASI ERROR PERIKSA KEMBALI");
@@ -77,14 +71,7 @@ public class RegisActivity extends AppCompatActivity {
 
             }
         });
-        s_login = findViewById(R.id.r_bt_login);
-        s_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegisActivity.this,LoginActivity.class));
-                overridePendingTransition(R.anim.slide_left,R.anim.slide_ou_right);
-            }
-        });
+
     }
 
     private void Regist(){
@@ -95,7 +82,7 @@ public class RegisActivity extends AppCompatActivity {
         final String emails = this.email.getText().toString().trim();
         final String passwords = this.password.getText().toString().trim();
         final String notelp = this.notelp.getText().toString().trim();
-        final String instansi = this.instansi.getText().toString().trim();
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REGIST,
                 new Response.Listener<String>() {
@@ -138,7 +125,6 @@ public class RegisActivity extends AppCompatActivity {
                 params.put("email", emails);
                 params.put("password", passwords);
                 params.put("nohp", notelp);
-                params.put("instansi", instansi);
                 return params;
             }
         };

@@ -1,4 +1,4 @@
-package com.mobile.qosin.KostPria;
+package com.mobile.qosin;
 
 
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.google.android.material.tabs.TabLayout;
+import com.mobile.qosin.KostPria.FragmentKostPria;
 import com.mobile.qosin.KostWanita.FragmentKostWanita;
 import com.mobile.qosin.R;
 
@@ -22,7 +23,6 @@ public class TabKost extends Fragment {
 
 
     public TabKost() {
-        // Required empty public constructor
     }
 
 

@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/navigation_profile_menu"
-        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:icon="@drawable/profile_icon"
         android:title="ACCOUNT" />
 
 

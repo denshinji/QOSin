@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Kost {
 
-    @SerializedName("id")
+    @SerializedName("id_content")
     private int id;
-    @SerializedName("nama")
+    @SerializedName("judul_item")
     private String nama;
 
     public String getAlamat_engkap() {
@@ -25,32 +25,31 @@ public class Kost {
         this.alamat_singkat = alamat_singkat;
     }
 
-    @SerializedName("alamat_lengkap")
+    @SerializedName("alamat")
     private String alamat_engkap;
-    @SerializedName("alamat_singkat")
+    @SerializedName("wilayah")
     private String alamat_singkat;
-    @SerializedName("jenis")
+    @SerializedName("tipe_content")
     private String jenis;
-    @SerializedName("harga")
-    private int harga;
-    @SerializedName("deskripsi")
+    @SerializedName("bulanan")
+    private String harga;
+    @SerializedName("fasilitas tambahan")
     private String deskripsi;
-    @SerializedName("gender")
+    @SerializedName("tipe")
     private String gender;
     @SerializedName("view")
     private int view;
     @SerializedName("tanggal_post")
     private String tanggal_post;
-    @SerializedName("image_thumb")
+    @SerializedName("foto_cover")
     private String image_thumb;
-    @SerializedName("image_depan")
+    @SerializedName("foto_luar")
     private String image_depan;
-    @SerializedName("image_luar")
+    @SerializedName("foto_kamar")
     private String image_luar;
-    @SerializedName("image_kamar")
+    @SerializedName("foto_kamar_mandi")
     private String image_kamar;
-    @SerializedName("image_wc")
-    private String image_wc;
+
 
     public int getId() {
         return id;
@@ -76,11 +75,11 @@ public class Kost {
         this.jenis = jenis;
     }
 
-    public int getHarga() {
+    public String getHarga() {
         return harga;
     }
 
-    public void setHarga(int harga) {
+    public void setHarga(String harga) {
         this.harga = harga;
     }
 
@@ -148,11 +147,4 @@ public class Kost {
         this.image_kamar = image_kamar;
     }
 
-    public String getImage_wc() {
-        return image_wc;
-    }
-
-    public void setImage_wc(String image_wc) {
-        this.image_wc = image_wc;
-    }
 }

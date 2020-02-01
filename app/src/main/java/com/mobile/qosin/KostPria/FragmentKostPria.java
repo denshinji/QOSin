@@ -1,14 +1,21 @@
 package com.mobile.qosin.KostPria;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +39,7 @@ public class FragmentKostPria extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapter;
+    private SearchView searchView;
     private List<Kost> KostList;
     ApiInterface apiInterface;
     Adapter.RecyclerViewClickListener listener;
@@ -47,7 +55,20 @@ public class FragmentKostPria extends Fragment {
         View view= inflater.inflate(R.layout.fragment_kost, container, false);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        searchView = view.findViewById(R.id.searchview);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+             adapter.getFilter().filter(query);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         recyclerView = view.findViewById(R.id.list_view);
 
         layoutManager = new LinearLayoutManager(getContext());
@@ -90,9 +111,16 @@ public class FragmentKostPria extends Fragment {
         });
     }
 
+
+
     @Override
     public void onResume() {
         super.onResume();
         getKost();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 }

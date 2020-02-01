@@ -23,7 +23,8 @@ public class SplashActivity extends AppCompatActivity {
         Thread thread = new Thread() {
             public void run() {
                 try {
-                    LazyLoader loaders = new LazyLoader(SplashActivity.this, 30, 20, ContextCompat.getColor(SplashActivity.this, R.color.loader_selected),
+                    LazyLoader loaders = new LazyLoader(SplashActivity.this, 30, 20,
+                            ContextCompat.getColor(SplashActivity.this, R.color.loader_selected),
                             ContextCompat.getColor(SplashActivity.this, R.color.loader_selected),
                             ContextCompat.getColor(SplashActivity.this, R.color.loader_selected));
                     loader.setAnimDuration(500);

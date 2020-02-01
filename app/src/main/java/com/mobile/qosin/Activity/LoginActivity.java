@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +34,7 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     private Button btnlogin;
-    private TextView s_regis;
-    private LazyLoader pr;
+    private ProgressBar pr;
     private EditText username,password;
     private SessionManager sessionManager;
     private static String URL_LOGIN = "https://qosin.id/login.php";
@@ -45,17 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         sessionManager = new SessionManager(this);
-        pr = findViewById(R.id.l_pr);
-        LazyLoader loaders = new LazyLoader(LoginActivity.this, 30, 20, ContextCompat.getColor(LoginActivity.this, R.color.loader_selected),
-                ContextCompat.getColor(LoginActivity.this, R.color.loader_selected),
-                ContextCompat.getColor(LoginActivity.this, R.color.loader_selected));
-        pr.setAnimDuration(500);
-        pr.setFirstDelayDuration(100);
-        pr.setSecondDelayDuration(250);
-        pr.setInterpolator(new LinearInterpolator());
-
-        pr.addView(loaders);
-
+        pr = findViewById(R.id.pr);
         username = findViewById(R.id.in_nama);
         password = findViewById(R.id.in_password);
         btnlogin = findViewById(R.id.btn_login);
@@ -74,14 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        s_regis = findViewById(R.id.l_bt_regist);
-        s_regis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,RegisActivity.class));
-                overridePendingTransition(R.anim.slide_right,R.anim.slide_ou_left);
-            }
-        });
+
 
     }
 
@@ -104,14 +87,14 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONObject object = jsonArray.getJSONObject(i);
 
 
+                                    String jenis_akun = object.getString("jenis_akun").trim();
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
                                     String username = object.getString("username").trim();
                                     String notelp = object.getString("nope").trim();
-                                    String instansi = object.getString("instansi").trim();
 
 
-                                    sessionManager.createSession(name, email, username, notelp, instansi);
+                                    sessionManager.createSession(jenis_akun, name, email, username, notelp);
                                     Toast.makeText(LoginActivity.this,"Welcome "+name,Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

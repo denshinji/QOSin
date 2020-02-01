@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -50,7 +51,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
         holder.mName.setText(kosts.get(position).getNama());
         holder.mHarga.setText("Rp."+""+kosts.get(position).getHarga()+"/bulan");
         holder.mAlamat.setText(kosts.get(position).getAlamat_singkat());
-        holder.mDeskripsi.setText(kosts.get(position).getDeskripsi());
 
         Glide.with(context)
                 .load(kosts.get(position).getImage_thumb())
@@ -76,15 +76,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private RecyclerViewClickListener mListener;
-        private CircleImageView mPicture;
-        private TextView mName, mHarga, mAlamat,mDeskripsi;
+        private ImageView mPicture;
+        private TextView mName, mHarga, mAlamat;
         private RelativeLayout mRowContainer;
 
         public MyViewHolder(View itemView, RecyclerViewClickListener listener) {
             super(itemView);
             mPicture = itemView.findViewById(R.id.img_item_photo);
             mName = itemView.findViewById(R.id.item_namacontent);
-            mDeskripsi = itemView.findViewById(R.id.item_deksripsi);
             mHarga = itemView.findViewById(R.id.item_harga);
             mAlamat = itemView.findViewById(R.id.item_rate);
             mRowContainer = itemView.findViewById(R.id.rv_item);

@@ -12,7 +12,9 @@
         android:roundIcon="@drawable/roundicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ActivityKost"></activity>
+        <activity android:name=".AddKost"></activity>
+        <activity android:name=".MenuLogin" />
+        <activity android:name=".Activity.ActivityKost" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".Activity.RegisActivity" />
         <activity android:name=".Activity.LoginActivity" />
