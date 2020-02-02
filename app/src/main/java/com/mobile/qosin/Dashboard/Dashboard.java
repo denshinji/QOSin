@@ -18,11 +18,13 @@ import android.widget.ViewFlipper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mobile.qosin.Activity.ActivityKost;
 import com.mobile.qosin.Adapter.SliderAdapter;
+import com.mobile.qosin.Adapter.SliderAdapter2;
 import com.mobile.qosin.R;
 import com.mobile.qosin.SessionManager;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -33,7 +35,6 @@ import java.util.HashMap;
 public class Dashboard extends Fragment {
     private TextView nama,email;
     private ImageButton bt_kost;
-    private FloatingActionButton fab;
     private SessionManager sessionManager;
     public Dashboard() {
         // Required empty public constructor
@@ -54,20 +55,19 @@ public class Dashboard extends Fragment {
         sll.setScrollTimeInSec(6);
         sll.setIndicatorAnimation(IndicatorAnimations.WORM);
         sll.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+
+        SliderView slp = view.findViewById(R.id.slider_template_promo);
+        slp.setSliderAdapter(new SliderAdapter2(getContext()));
+        slp.startAutoCycle();
+        slp.setScrollTimeInSec(6);
+        slp.setIndicatorAnimation(IndicatorAnimations.WORM);
+        slp.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         HashMap<String , String> user = sessionManager.getUserDetail();
         String mName = user.get(sessionManager.USERNAME);
         String mEmail = user.get(sessionManager.NAME);
         String getname = "Hai "+mName+" !";
         String getmail = ""+mEmail;
-
         nama.setText(getname);
-        fab = view.findViewById(R.id.fab_add);
-        String mJenis = user.get(sessionManager.JENIS_AKUN);
-        if (TextUtils.isEmpty(mJenis)) {
-            fab.hide();
-        } else {
-            fab.show();
-        }
         email.setText(getmail);
         bt_kost=view.findViewById(R.id.bt_kost);
         bt_kost.setOnClickListener(new View.OnClickListener() {

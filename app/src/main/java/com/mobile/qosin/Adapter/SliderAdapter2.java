@@ -5,17 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mobile.qosin.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
-public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH> {
+public class SliderAdapter2 extends SliderViewAdapter<SliderAdapter2.SliderAdapterVH> {
 
     private Context context;
 
-    public SliderAdapter(Context context) {
+    public SliderAdapter2(Context context) {
         this.context = context;
     }
 
@@ -31,12 +30,17 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         switch (position) {
             case 0:
                 Glide.with(viewHolder.itemView)
-                        .load("https://qosin.id/image_android/template_tentang_qosin")
+                        .load("http://qosin.id/image_android/promo/promo2.png")
+                        .into(viewHolder.imageViewBackground);
+                break;
+            case 1:
+                Glide.with(viewHolder.itemView)
+                        .load("http://qosin.id/image_android/promo/promo3.png")
                         .into(viewHolder.imageViewBackground);
                 break;
             default:
                 Glide.with(viewHolder.itemView)
-                        .load(R.drawable.template_find2)
+                        .load("http://qosin.id/image_android/promo/promo1.png")
                         .into(viewHolder.imageViewBackground);
                 break;
 
