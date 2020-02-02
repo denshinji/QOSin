@@ -31,12 +31,12 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         switch (position) {
             case 0:
                 Glide.with(viewHolder.itemView)
-                        .load("https://qosin.id/image_android/template_tentang_qosin")
+                        .load("http://qosin.id/image_android/template_tentang_qosin/kerjasama.png")
                         .into(viewHolder.imageViewBackground);
                 break;
             default:
                 Glide.with(viewHolder.itemView)
-                        .load(R.drawable.template_find2)
+                        .load("http://qosin.id/image_android/template_tentang_qosin/temukan.png")
                         .into(viewHolder.imageViewBackground);
                 break;
 
