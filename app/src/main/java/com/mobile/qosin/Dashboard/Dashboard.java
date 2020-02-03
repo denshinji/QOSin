@@ -58,8 +58,6 @@ public class Dashboard extends Fragment {
 
         SliderView slp = view.findViewById(R.id.slider_template_promo);
         slp.setSliderAdapter(new SliderAdapter2(getContext()));
-        slp.startAutoCycle();
-        slp.setScrollTimeInSec(6);
         slp.setIndicatorAnimation(IndicatorAnimations.WORM);
         slp.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         HashMap<String , String> user = sessionManager.getUserDetail();
