@@ -50,7 +50,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@drawable/bg_cv_profile_dash" />
+                        android:background="@mipmap/bg_cv_profile_dash"/>
 
                     <TextView
                         android:id="@+id/get_nama"
@@ -124,32 +124,30 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="-295dp"
+                        android:layout_marginLeft="-290dp"
                         android:layout_marginTop="55dp"
-                        android:text="KOST"
+                        android:text="Kost"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
+                        android:layout_marginLeft="75dp"
                         android:layout_marginTop="55dp"
-                        android:text="KONTRAKAN"
+                        android:text="Kontrakan"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
+                        android:layout_marginLeft="70dp"
                         android:layout_marginTop="55dp"
-                        android:text="EVENT"
+                        android:text="Event"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textSize="15sp" />
 
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

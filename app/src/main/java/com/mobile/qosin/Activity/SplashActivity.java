@@ -27,9 +27,9 @@ public class SplashActivity extends AppCompatActivity {
                             ContextCompat.getColor(SplashActivity.this, R.color.loader_selected),
                             ContextCompat.getColor(SplashActivity.this, R.color.loader_selected),
                             ContextCompat.getColor(SplashActivity.this, R.color.loader_selected));
-                    loader.setAnimDuration(500);
+                    loader.setAnimDuration(250);
                     loader.setFirstDelayDuration(100);
-                    loader.setSecondDelayDuration(250);
+                    loader.setSecondDelayDuration(200);
                     loader.setInterpolator(new LinearInterpolator());
 
                     loader.addView(loaders);

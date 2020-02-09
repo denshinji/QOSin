@@ -9,8 +9,9 @@
         android:id="@+id/item_parent"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginEnd="5dp"
-        android:minWidth="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="55dp"
+        android:minWidth="30dp"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="22.5dp"
         app:cardElevation="0dp">
@@ -31,7 +32,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_bookmark"
+                android:src="@drawable/icon_dashboard_home"
                 android:tint="@color/colorItemDefaultTint" />
 
             <TextView

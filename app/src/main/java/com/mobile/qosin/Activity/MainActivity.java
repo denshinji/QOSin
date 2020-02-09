@@ -49,8 +49,12 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
         Dashboard dashboard = new Dashboard();
         Toolbar toolbar = findViewById(R.id.toolbar_include);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(null);
 
+        getSupportActionBar().setTitle(null);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_main, dashboard);
+        transaction.addToBackStack(null);
+        transaction.commit();
         customBottomBar = new CustomBottomBar(this, findViewById(R.id.customBottomBar), MainActivity.this);
         initItems();
         customBottomBar.changeBackground(getString(R.color.colorItemDefaultBackground));
@@ -63,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
     @SuppressLint("ResourceType")
     private void initItems() {
         CustomBottomItem home = new CustomBottomItem(HOME, R.drawable.icon_dashboard_home, getString(R.string.home_title), getString(R.color.colorItemBackground), getString(R.color.colorHijau));
-        CustomBottomItem favorite = new CustomBottomItem(FAVORITE, R.drawable.ic_favorite_black_24dp, getString(R.string.favorite_title), getString(R.color.colorItem1Background), getString(R.color.colorHijau));
-        CustomBottomItem profile = new CustomBottomItem(PROFILE, R.drawable.profile_icon, getString(R.string.profile_title), getString(R.color.colorItem2Background), getString(R.color.colorHijau));
+        CustomBottomItem favorite = new CustomBottomItem(FAVORITE, R.drawable.ic_favorite_black_24dp, getString(R.string.favorite_title), getString(R.color.colorItemBackground), getString(R.color.colorHijau));
+        CustomBottomItem profile = new CustomBottomItem(PROFILE, R.drawable.profile_icon, getString(R.string.profile_title), getString(R.color.colorItemBackground), getString(R.color.colorHijau));
 
         customBottomBar.addItem(home);
         customBottomBar.addItem(favorite);
@@ -81,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName())
         );
-        searchView.setQueryHint("CARI Kost");
+        searchView.setQueryHint("Cari kost");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(final String query) {
@@ -99,17 +103,6 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
         searchMenuItem.getIcon().setVisible(false, false);
 
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -134,27 +127,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
         }, 2000);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    Fragment selectedFragment = null;
-                    switch (menuItem.getItemId()) {
-                        case R.id.navigation_dashboard_menu:
-                            selectedFragment = new Dashboard();
 
-                            break;
-                        case R.id.navigation_profile_menu:
-                            selectedFragment = new Account();
-
-                            break;
-
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, selectedFragment).commit();
-                    overridePendingTransition(R.anim.slide_left,R.anim.slide_ou_right);
-                    return true;
-                }
-            };
 
     @Override
     public void itemSelect(int selectedID) {
@@ -170,5 +143,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
                  selectedFragment = new Account();
                 break;
         }
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, selectedFragment).commit();
+        overridePendingTransition(R.anim.slide_right,R.anim.slide_ou_left);
     }
 }

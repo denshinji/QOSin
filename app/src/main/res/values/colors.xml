@@ -3,9 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">@android:color/transparent</color>
-    <color name="colorHijau">#3BC21F</color>
+    <color name="colorHijau">#39992F</color>
     <color name="colorFadeHijau">#359B2A</color>
-    <color name="colorGrey">#D5D5D5</color>
+    <color name="colorGrey">#E7E7E7</color>
     <color name="colorback">#EEEEEE</color>
 
     <color name="colorBottomBarBackground">#FFFFFF</color>
@@ -14,7 +14,7 @@
     <color name="colorDivider">#E6E6E6</color>
     <color name="colorItemDefaultBackground">#FFFFFF</color>
     <color name="colorItemDefaultTint">#000000</color>
-    <color name="colorItemBackground">#DFD7F3</color>
+    <color name="colorItemBackground">#E6E6E6</color>
     <color name="colorItemTint">#5B37B7</color>
     <color name="colorItem1Background">#F7D7EF</color>
     <color name="colorItem1Tint">#B73892</color>
