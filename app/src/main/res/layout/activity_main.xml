@@ -6,30 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <include
+        android:id="@+id/toolbar_include"
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:theme="@style/Platform.MaterialComponents.Light"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/qosin_putih" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/titlename"
-            android:text="@string/app_name"
-            android:textColor="@color/colorHijau"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_height="wrap_content" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -38,7 +19,7 @@
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" >
+        app:layout_constraintTop_toBottomOf="@id/toolbar_include" >
 
     </FrameLayout>
 
@@ -49,12 +30,14 @@
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
         app:itemTextAppearanceActive="@style/BottomNavigation.ActiveItemTextAppearance"
+        app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar_include"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_include"
         app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/bt_menu"
-        tools:layout_editor_absoluteX="-16dp" />
+        app:menu="@menu/bt_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

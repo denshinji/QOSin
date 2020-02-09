@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:id="@+id/splash"
         android:layout_centerInParent="true"
-        android:background="@drawable/splash" />
+        android:background="@mipmap/splash" />
     <com.agrawalsuneet.dotsloader.loaders.LazyLoader
         android:layout_width="wrap_content"
         android:layout_centerInParent="true"

@@ -11,13 +11,23 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         app:cardCornerRadius="4dp"
-        app:cardBackgroundColor="@color/colorHijau">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bc_profile"
+            android:scaleType="fitXY"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="150dp"
+            >
 
             <TextView
                 android:id="@+id/name_profile"
@@ -32,7 +42,7 @@
                 app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.65999997" />
+                app:layout_constraintVertical_bias="0.47000003" />
 
             <TextView
                 android:id="@+id/email_profile"
@@ -53,17 +63,17 @@
                 android:id="@+id/edit_bt"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
+                android:background="@drawable/round_button"
                 android:text="EDIT"
+                android:textColor="@color/colorHijau"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorHijau"
-                android:background="@drawable/round_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.945"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.807" />
+                app:layout_constraintVertical_bias="0.718" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -72,8 +82,8 @@
     <!-- TODO: Update blank fragment layout -->
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_gravity="bottom"
         android:background="@drawable/round_button_hijau"
         android:text="LOGOUT"
@@ -81,9 +91,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.90999997" />
+        app:layout_constraintVertical_bias="0.976" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

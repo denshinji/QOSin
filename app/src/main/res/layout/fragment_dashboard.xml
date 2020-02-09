@@ -18,11 +18,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:cardCornerRadius="10dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
@@ -86,9 +88,6 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.083" />
                 </com.google.android.material.card.MaterialCardView>
-
-
-
 
 
                 <LinearLayout
@@ -159,8 +158,9 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="520dp"
-            app:cardCornerRadius="10dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="2dp"
+            android:elevation="5dp"
             android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -169,18 +169,20 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
             >
 
 
-            <com.google.android.material.card.MaterialCardView
+            <ImageView
                 android:id="@+id/materialCardView2"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginLeft="20dp"
                 android:background="@android:color/black"
-                app:cardBackgroundColor="@android:color/black"
-                app:cardCornerRadius="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/slider_template"
                 app:layout_constraintVertical_bias="0.04000002" />

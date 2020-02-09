@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
         Dashboard dashboard = new Dashboard();
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_include);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
