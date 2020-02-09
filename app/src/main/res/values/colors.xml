@@ -3,7 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">@android:color/transparent</color>
-    <color name="colorHijau">#289514</color>
+    <color name="colorHijau">#3BC21F</color>
     <color name="colorFadeHijau">#359B2A</color>
     <color name="colorGrey">#D5D5D5</color>
     <color name="colorback">#EEEEEE</color>
