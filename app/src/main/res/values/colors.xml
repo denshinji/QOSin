@@ -14,6 +14,7 @@
     <color name="colorDivider">#E6E6E6</color>
     <color name="colorItemDefaultBackground">#FFFFFF</color>
     <color name="colorItemDefaultTint">#000000</color>
+    <color name="colorItemDefaultTint1">#25000000</color>
     <color name="colorItemBackground">#E6E6E6</color>
     <color name="colorItemTint">#5B37B7</color>
     <color name="colorItem1Background">#F7D7EF</color>

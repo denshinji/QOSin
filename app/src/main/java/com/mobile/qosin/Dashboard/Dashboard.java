@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import android.widget.ViewFlipper;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mobile.qosin.Activity.ActivityKost;
+import com.mobile.qosin.Adapter.RecyclerViewAdapterCampus;
 import com.mobile.qosin.Adapter.SliderAdapter;
 import com.mobile.qosin.Adapter.SliderAdapter2;
 import com.mobile.qosin.R;
@@ -30,6 +33,7 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -40,6 +44,8 @@ public class Dashboard extends Fragment {
     private TextView nama,email;
     private ImageButton bt_kost;
     private SessionManager sessionManager;
+    private ArrayList<Integer> mImage3 = new ArrayList<>();
+    private ArrayList<String> mDesc = new ArrayList<>();
     public Dashboard() {
         // Required empty public constructor
     }
@@ -79,11 +85,25 @@ public class Dashboard extends Fragment {
                 startActivity(intent);
             }
         });
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_cv2);
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerViewAdapterCampus adapterf = new RecyclerViewAdapterCampus(getActivity(), mImage3,mDesc);
+        recyclerView.setAdapter(adapterf);
+        mImage3.add(R.drawable.unand);
+        mDesc.add("UNAND");
+        mImage3.add(R.drawable.poli);
+        mDesc.add("PNP");
+        mImage3.add(R.drawable.unp);
+        mDesc.add("UNP");
+        mImage3.add(R.drawable.eka);
+        mDesc.add("UNES");
+        mImage3.add(R.drawable.bunghatta);
+        mDesc.add("BUNG HATTA");
+
 
     return view;
     }
-
-
 
 
 }

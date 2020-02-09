@@ -23,6 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mobile.qosin.Adapter.CustomBottomBar;
 import com.mobile.qosin.Adapter.ItemAdapter;
 import com.mobile.qosin.Dashboard.Dashboard;
+import com.mobile.qosin.FavoriteFragment;
 import com.mobile.qosin.Model.CustomBottomItem;
 import com.mobile.qosin.R;
 import com.mobile.qosin.SessionManager;
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
                 selectedFragment = new Dashboard();
                 break;
             case FAVORITE:
-                selectedFragment = new Dashboard();
+                selectedFragment = new FavoriteFragment();
                 break;
             case PROFILE:
                  selectedFragment = new Account();
