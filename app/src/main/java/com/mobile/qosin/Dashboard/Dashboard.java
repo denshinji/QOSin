@@ -1,7 +1,6 @@
 package com.mobile.qosin.Dashboard;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,13 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.mobile.qosin.Activity.ActivityKontrakan;
-import com.mobile.qosin.Activity.ActivityKost;
+import com.mobile.qosin.Adapter.RecyclerViewAdapterButton;
 import com.mobile.qosin.Adapter.RecyclerViewAdapterCampus;
 import com.mobile.qosin.Adapter.SliderAdapter;
 import com.mobile.qosin.Adapter.SliderAdapter2;
@@ -36,11 +31,11 @@ import java.util.HashMap;
  */
 public class Dashboard extends Fragment {
     private TextView nama,email;
-    private ImageButton bt_kost;
-    private ImageView bt_event,bt_kontrakan;
     private SessionManager sessionManager;
     private ArrayList<Integer> mImage3 = new ArrayList<>();
     private ArrayList<String> mDesc = new ArrayList<>();
+    private ArrayList<Integer> mImage4 = new ArrayList<>();
+    private ArrayList<String> mDesc2 = new ArrayList<>();
     public Dashboard() {
         // Required empty public constructor
     }
@@ -67,40 +62,24 @@ public class Dashboard extends Fragment {
         slp.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         HashMap<String , String> user = sessionManager.getUserDetail();
         String mName = user.get(sessionManager.USERNAME);
-        String mEmail = user.get(sessionManager.NAME);
-        String getname = "Hai "+mName+" !";
-        String getmail = ""+mEmail;
+        String getname = "Hai "+mName;
+        String getmail = "Mau cari apa hari ini ?";
         nama.setText(getname);
         email.setText(getmail);
-        bt_kost=view.findViewById(R.id.bt_kost);
-        bt_kost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ActivityKost.class);
-                startActivity(intent);
-            }
-        });
-        bt_event = view.findViewById(R.id.bt_kost_event);
-        bt_event.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"Maaf saat ini fitur ini belum tersedia",Toast.LENGTH_SHORT).show();
-            }
-        });
-        bt_kontrakan = view.findViewById(R.id.bt_kost_kontrakan);
-        bt_kontrakan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ActivityKontrakan.class);
-                startActivity(intent);
-            }
-        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_cv2);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewAdapterCampus adapterf = new RecyclerViewAdapterCampus(getActivity(), mImage3,mDesc);
         recyclerView.setAdapter(adapterf);
+
+
+        LinearLayoutManager layoutManagerbutton = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerViewbutton = view.findViewById(R.id.rv_button_menu);
+        recyclerViewbutton.setLayoutManager(layoutManagerbutton);
+        RecyclerViewAdapterButton adapterbutton = new RecyclerViewAdapterButton(getActivity(), mImage4,mDesc2);
+        recyclerViewbutton.setAdapter(adapterbutton);
        initrvcampus();
+       initrvbutton();
 
 
     return view;
@@ -117,6 +96,14 @@ public class Dashboard extends Fragment {
         mDesc.add("UNES");
         mImage3.add(R.drawable.bunghatta);
         mDesc.add("BUNG HATTA");
+    }
+    private void initrvbutton() {
+        mImage4.add(R.mipmap.icon_kost2);
+        mDesc2.add("KOST");
+        mImage4.add(R.mipmap.icon_kontrakan2);
+        mDesc2.add("KONTRAKAN");
+        mImage4.add(R.mipmap.icon_event2);
+        mDesc2.add("EVENT");
     }
 
 

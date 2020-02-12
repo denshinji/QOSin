@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
+        android:layout_margin="30dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/loader"
         android:layout_marginTop="30dp"
@@ -23,11 +23,11 @@
         app:lazyloader_dotsDist="10dp"
         app:lazyloader_dotsRadius="8dp"
         app:lazyloader_firstDelayDur="150"
-        app:lazyloader_firstDotColor="@color/colorHijau"
+        app:lazyloader_firstDotColor="@android:color/white"
         app:lazyloader_interpolator="@android:anim/decelerate_interpolator"
         app:lazyloader_secondDelayDur="300"
-        app:lazyloader_secondDotColor="@color/colorHijau"
-        app:lazyloader_thirdDotColor="@color/colorHijau"
+        app:lazyloader_secondDotColor="@android:color/white"
+        app:lazyloader_thirdDotColor="@android:color/white"
         />
 
 </RelativeLayout>

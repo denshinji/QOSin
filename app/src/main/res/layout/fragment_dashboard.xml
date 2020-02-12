@@ -22,7 +22,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:elevation="5dp"
             app:cardCornerRadius="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,124 +31,53 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
 
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cv_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_margin="20dp"
-                    app:cardCornerRadius="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                <TextView
+                    android:id="@+id/get_nama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="20dp"
+                    android:text="HAI DENI"
+                    android:textColor="@color/grey_90"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.4"
+                    app:layout_constraintHorizontal_bias="0.04"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.22000003">
+                    app:layout_constraintVertical_bias="0.04000002" />
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@mipmap/bg_cv_profile_dash" />
+                <TextView
+                    android:id="@+id/get_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="20dp"
+                    android:text="denialfarizi.da@gmail.com"
+                    android:textColor="@color/grey_90"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/get_nama"
+                    app:layout_constraintVertical_bias="0.0" />
 
-                    <TextView
-                        android:id="@+id/get_nama"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
-                        android:text="HAI DENI"
-                        android:textColor="@android:color/white"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.083" />
-
-                    <TextView
-                        android:id="@+id/get_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="35dp"
-                        android:text="denialfarizi.da@gmail.com"
-                        android:textColor="@android:color/white"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.083" />
-                </com.google.android.material.card.MaterialCardView>
-
-
-                <LinearLayout
-                    android:id="@+id/linearLayout"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_button_menu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="-10dp"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintVertical_bias="0.85">
-
-                    <ImageButton
-                        android:id="@+id/bt_kost"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="55dp"
-                        android:background="@drawable/ripple_bt_kost" />
-
-                    <ImageView
-                        android:id="@+id/bt_kost_kontrakan"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="75dp"
-                        android:background="@drawable/icon_kontrakan" />
-
-                    <ImageView
-                        android:id="@+id/bt_kost_event"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="75dp"
-                        android:background="@drawable/icon_event" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-290dp"
-                        android:layout_marginTop="55dp"
-                        android:text="Kost"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="75dp"
-                        android:layout_marginTop="55dp"
-                        android:text="Kontrakan"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="70dp"
-                        android:layout_marginTop="55dp"
-                        android:text="Event"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/get_email" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
