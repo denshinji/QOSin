@@ -8,18 +8,15 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 
-import com.mobile.qosin.Kost.TabKost;
+import com.mobile.qosin.Kontrakan.FragmentKontrakan;
 import com.mobile.qosin.R;
 
-public class ActivityKost extends AppCompatActivity {
-
-
+public class ActivityKontrakan extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kost);
-
+        setContentView(R.layout.activity_kontrakan);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
@@ -30,9 +27,9 @@ public class ActivityKost extends AppCompatActivity {
             }
         });
         getSupportActionBar().setTitle(null);
-        TabKost kost = new TabKost();
+        FragmentKontrakan kontrakan = new FragmentKontrakan();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_main, kost);
+        transaction.replace(R.id.frame_main_kontrakan, kontrakan);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -48,3 +45,4 @@ public class ActivityKost extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 }
+

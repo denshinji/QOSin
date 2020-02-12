@@ -1,31 +1,26 @@
-package com.mobile.qosin.KostPria;
+package com.mobile.qosin.Kost.KostWanita;
 
-import android.app.SearchManager;
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.mobile.qosin.API.ApiClient;
 import com.mobile.qosin.API.ApiInterface;
-import com.mobile.qosin.Adapter.Adapter;
-import com.mobile.qosin.DetailActivity;
 import com.mobile.qosin.Activity.MainActivity;
+import com.mobile.qosin.Adapter.Adapter;
+import com.mobile.qosin.Activity.DetailActivity;
 import com.mobile.qosin.Model.Kost;
 import com.mobile.qosin.R;
 
@@ -35,17 +30,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentKostPria extends Fragment {
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class FragmentKostWanita extends Fragment {
+
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapter;
-    private ProgressBar pb;
+    private ProgressBar pbw;
     private SearchView searchView;
     private List<Kost> KostList;
     ApiInterface apiInterface;
     Adapter.RecyclerViewClickListener listener;
-    public FragmentKostPria() {
+    public FragmentKostWanita() {
         // Required empty public constructor
     }
 
@@ -57,12 +57,14 @@ public class FragmentKostPria extends Fragment {
         View view= inflater.inflate(R.layout.fragment_kost, container, false);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+
+        recyclerView = view.findViewById(R.id.list_view);
+        pbw = view.findViewById(R.id.pb_frag_kost);
         searchView = view.findViewById(R.id.searchview);
-        pb = view.findViewById(R.id.pb_frag_kost);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-             adapter.getFilter().filter(query);
+                adapter.getFilter().filter(query);
                 return false;
             }
 
@@ -72,8 +74,6 @@ public class FragmentKostPria extends Fragment {
                 return false;
             }
         });
-        recyclerView = view.findViewById(R.id.list_view);
-
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -93,10 +93,10 @@ public class FragmentKostPria extends Fragment {
     }
 
     public void getKost(){
-        pb.setVisibility(View.VISIBLE);
+        pbw.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
 
-        Call<List<Kost>> call = apiInterface.getPets();
+        Call<List<Kost>> call = apiInterface.get_kost_wanita();
         call.enqueue(new Callback<List<Kost>>() {
             @Override
             public void onResponse(Call<List<Kost>> call, Response<List<Kost>> response) {
@@ -104,7 +104,7 @@ public class FragmentKostPria extends Fragment {
                 Log.i(MainActivity.class.getSimpleName(), response.body().toString());
                 adapter = new Adapter(KostList, getContext(), listener);
                 recyclerView.setAdapter(adapter);
-                pb.setVisibility(View.GONE);
+                pbw.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
                 adapter.notifyDataSetChanged();
             }
@@ -117,16 +117,9 @@ public class FragmentKostPria extends Fragment {
         });
     }
 
-
-
     @Override
     public void onResume() {
         super.onResume();
         getKost();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
     }
 }

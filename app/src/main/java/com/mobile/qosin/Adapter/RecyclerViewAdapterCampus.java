@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,6 +61,8 @@ public class RecyclerViewAdapterCampus extends RecyclerView.Adapter<RecyclerView
                 if (mDesc.get(position).equals("UNAND")){
                     Intent intent = new Intent(v.getContext(), ActivityKost.class);
                     v.getContext().startActivity(intent);
+                } else {
+                    Toast.makeText(v.getContext(),"Maaf daftar belum tersedia",Toast.LENGTH_SHORT).show();
                 }
             }
         });

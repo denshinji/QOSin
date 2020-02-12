@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frame_movie"
+    android:id="@+id/frame_kontrakan"
     android:focusedByDefault="true"
     android:focusable="true"
     android:background="@color/colorback"
@@ -11,22 +11,22 @@
     <ProgressBar
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/pb_frag_kost"
+        android:id="@+id/pb_frag_kontrakan"
         android:visibility="gone"
         android:layout_gravity="center"/>
     <SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
-        android:id="@+id/searchview"
+        android:id="@+id/searchview_kontrakan"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:queryHint="Cari Kost"
+        android:queryHint="Cari Kontrakan"
         android:focusable="false"
         android:background="@android:color/white"/>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_view"
+        android:id="@+id/list_view_kontrakan"
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

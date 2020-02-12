@@ -1,6 +1,5 @@
 package com.mobile.qosin.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -19,14 +18,13 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mobile.qosin.Adapter.CustomBottomBar;
 import com.mobile.qosin.Adapter.ItemAdapter;
 import com.mobile.qosin.Dashboard.Dashboard;
 import com.mobile.qosin.FavoriteFragment;
 import com.mobile.qosin.Model.CustomBottomItem;
 import com.mobile.qosin.R;
-import com.mobile.qosin.SessionManager;
+import com.mobile.qosin.Tools.SessionManager;
 
 public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemSelectorInterface {
     private boolean doubleBackToExitPressedOnce = false;

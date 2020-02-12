@@ -9,7 +9,7 @@ import android.view.animation.LinearInterpolator;
 
 import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
 import com.mobile.qosin.R;
-import com.mobile.qosin.SessionManager;
+import com.mobile.qosin.Tools.SessionManager;
 
 public class SplashActivity extends AppCompatActivity {
 

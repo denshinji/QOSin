@@ -1,4 +1,4 @@
-package com.mobile.qosin;
+package com.mobile.qosin.Kost;
 
 
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.google.android.material.tabs.TabLayout;
-import com.mobile.qosin.KostPria.FragmentKostPria;
-import com.mobile.qosin.KostWanita.FragmentKostWanita;
+import com.mobile.qosin.Kost.KostPria.FragmentKostPria;
+import com.mobile.qosin.Kost.KostWanita.FragmentKostWanita;
 import com.mobile.qosin.R;
 
 /**

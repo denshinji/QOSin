@@ -1,15 +1,13 @@
-package com.mobile.qosin;
+package com.mobile.qosin.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.mobile.qosin.Activity.LoginActivity;
-import com.mobile.qosin.Activity.RegisActivity;
+import com.mobile.qosin.R;
 
 public class MenuLogin extends AppCompatActivity {
 

@@ -1,11 +1,11 @@
-package com.mobile.qosin;
+package com.mobile.qosin.Tools;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.mobile.qosin.Activity.LoginActivity;
 import com.mobile.qosin.Activity.MainActivity;
+import com.mobile.qosin.Activity.MenuLogin;
 
 import java.util.HashMap;
 

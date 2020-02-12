@@ -1,4 +1,4 @@
-package com.mobile.qosin.KostWanita;
+package com.mobile.qosin.Kontrakan;
 
 
 import android.content.Intent;
@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 import com.mobile.qosin.API.ApiClient;
 import com.mobile.qosin.API.ApiInterface;
+import com.mobile.qosin.Activity.DetailActivity;
 import com.mobile.qosin.Activity.MainActivity;
 import com.mobile.qosin.Adapter.Adapter;
-import com.mobile.qosin.DetailActivity;
 import com.mobile.qosin.Model.Kost;
 import com.mobile.qosin.R;
 
@@ -34,18 +34,17 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentKostWanita extends Fragment {
-
+public class FragmentKontrakan extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapter;
-    private ProgressBar pbw;
+    private ProgressBar pb;
     private SearchView searchView;
     private List<Kost> KostList;
     ApiInterface apiInterface;
     Adapter.RecyclerViewClickListener listener;
-    public FragmentKostWanita() {
+    public FragmentKontrakan() {
         // Required empty public constructor
     }
 
@@ -54,13 +53,11 @@ public class FragmentKostWanita extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_kost, container, false);
+        View view= inflater.inflate(R.layout.fragment_kontrakan, container, false);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-
-        recyclerView = view.findViewById(R.id.list_view);
-        pbw = view.findViewById(R.id.pb_frag_kost);
-        searchView = view.findViewById(R.id.searchview);
+        searchView = view.findViewById(R.id.searchview_kontrakan);
+        pb = view.findViewById(R.id.pb_frag_kontrakan);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -74,6 +71,8 @@ public class FragmentKostWanita extends Fragment {
                 return false;
             }
         });
+        recyclerView = view.findViewById(R.id.list_view_kontrakan);
+
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -92,11 +91,11 @@ public class FragmentKostWanita extends Fragment {
         return view;
     }
 
-    public void getKost(){
-        pbw.setVisibility(View.VISIBLE);
+    public void getKontrakan(){
+        pb.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
 
-        Call<List<Kost>> call = apiInterface.get_kost_wanita();
+        Call<List<Kost>> call = apiInterface.getPets();
         call.enqueue(new Callback<List<Kost>>() {
             @Override
             public void onResponse(Call<List<Kost>> call, Response<List<Kost>> response) {
@@ -104,7 +103,7 @@ public class FragmentKostWanita extends Fragment {
                 Log.i(MainActivity.class.getSimpleName(), response.body().toString());
                 adapter = new Adapter(KostList, getContext(), listener);
                 recyclerView.setAdapter(adapter);
-                pbw.setVisibility(View.GONE);
+                pb.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
                 adapter.notifyDataSetChanged();
             }
@@ -117,9 +116,16 @@ public class FragmentKostWanita extends Fragment {
         });
     }
 
+
+
     @Override
     public void onResume() {
         super.onResume();
-        getKost();
+        getKontrakan();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 }

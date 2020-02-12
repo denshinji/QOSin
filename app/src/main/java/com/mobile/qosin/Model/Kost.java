@@ -1,13 +1,61 @@
 package com.mobile.qosin.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Kost {
+public class Kost implements Parcelable {
+
+    public Kost (){
+        
+    }
 
     @SerializedName("id_content")
     private int id;
     @SerializedName("judul_item")
     private String nama;
+
+    protected Kost(Parcel in) {
+        id = in.readInt();
+        nama = in.readString();
+        kampus = in.readString();
+        alamat_engkap = in.readString();
+        alamat_singkat = in.readString();
+        jenis = in.readString();
+        harga = in.readString();
+        deskripsi = in.readString();
+        gender = in.readString();
+        view = in.readInt();
+        tanggal_post = in.readString();
+        image_thumb = in.readString();
+        image_depan = in.readString();
+        image_luar = in.readString();
+        image_kamar = in.readString();
+    }
+
+    public static final Creator<Kost> CREATOR = new Creator<Kost>() {
+        @Override
+        public Kost createFromParcel(Parcel in) {
+            return new Kost(in);
+        }
+
+        @Override
+        public Kost[] newArray(int size) {
+            return new Kost[size];
+        }
+    };
+
+    public String getKampus() {
+        return kampus;
+    }
+
+    public void setKampus(String kampus) {
+        this.kampus = kampus;
+    }
+
+    @SerializedName("kampus")
+    private String kampus;
 
     public String getAlamat_engkap() {
         return alamat_engkap;
@@ -147,4 +195,27 @@ public class Kost {
         this.image_kamar = image_kamar;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(nama);
+        dest.writeString(kampus);
+        dest.writeString(alamat_engkap);
+        dest.writeString(alamat_singkat);
+        dest.writeString(jenis);
+        dest.writeString(harga);
+        dest.writeString(deskripsi);
+        dest.writeString(gender);
+        dest.writeInt(view);
+        dest.writeString(tanggal_post);
+        dest.writeString(image_thumb);
+        dest.writeString(image_depan);
+        dest.writeString(image_luar);
+        dest.writeString(image_kamar);
+    }
 }

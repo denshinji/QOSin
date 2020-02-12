@@ -1,19 +1,15 @@
 package com.mobile.qosin.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,7 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mobile.qosin.R;
-import com.mobile.qosin.SessionManager;
+import com.mobile.qosin.Tools.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;

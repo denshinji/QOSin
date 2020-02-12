@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.mobile.qosin.R;
-import com.mobile.qosin.SessionManager;
+import com.mobile.qosin.Tools.SessionManager;
 
 
 /**
