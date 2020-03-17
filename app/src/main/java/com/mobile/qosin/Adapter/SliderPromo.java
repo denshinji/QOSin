@@ -10,11 +10,11 @@ import com.bumptech.glide.Glide;
 import com.mobile.qosin.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
-public class SliderAdapter2 extends SliderViewAdapter<SliderAdapter2.SliderAdapterVH> {
+public class SliderPromo extends SliderViewAdapter<SliderPromo.SliderAdapterVH> {
 
     private Context context;
 
-    public SliderAdapter2(Context context) {
+    public SliderPromo(Context context) {
         this.context = context;
     }
 

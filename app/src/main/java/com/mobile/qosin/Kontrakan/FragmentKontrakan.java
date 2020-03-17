@@ -12,16 +12,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.mobile.qosin.API.ApiClient;
 import com.mobile.qosin.API.ApiInterface;
-import com.mobile.qosin.Activity.DetailActivity;
+import com.mobile.qosin.Activity.DetailActivityKontrakan;
+import com.mobile.qosin.Activity.DetailActivityKost;
 import com.mobile.qosin.Activity.MainActivity;
 import com.mobile.qosin.Adapter.Adapter;
-import com.mobile.qosin.Model.Kost;
+import com.mobile.qosin.Model.Item;
 import com.mobile.qosin.R;
 
 import java.util.List;
@@ -38,10 +41,11 @@ public class FragmentKontrakan extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private Adapter adapter;
+    private Adapter adapterKontrakan;
     private ProgressBar pb;
     private SearchView searchView;
-    private List<Kost> KostList;
+    private ImageView img_empty_kontrakan;
+    private List<Item> KontrakanList;
     ApiInterface apiInterface;
     Adapter.RecyclerViewClickListener listener;
     public FragmentKontrakan() {
@@ -58,16 +62,32 @@ public class FragmentKontrakan extends Fragment {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         searchView = view.findViewById(R.id.searchview_kontrakan);
         pb = view.findViewById(R.id.pb_frag_kontrakan);
+        img_empty_kontrakan = view.findViewById(R.id.img_no_data_kontrakan);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                adapter.getFilter().filter(query);
+                adapterKontrakan.getFilter().filter(query);
+                if(adapterKontrakan.getItemCount() == 0) {
+                    recyclerView.setVisibility(View.GONE);
+                    img_empty_kontrakan.setVisibility(View.VISIBLE);
+                } else if (query.isEmpty()) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    img_empty_kontrakan.setVisibility(View.GONE);
+
+                }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
+                adapterKontrakan.getFilter().filter(newText);
+                if(newText.isEmpty()) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    img_empty_kontrakan.setVisibility(View.GONE);
+                } else if(adapterKontrakan.getItemCount() == 0) {
+                    recyclerView.setVisibility(View.GONE);
+                    img_empty_kontrakan.setVisibility(View.VISIBLE);
+                }
                 return false;
             }
         });
@@ -80,9 +100,8 @@ public class FragmentKontrakan extends Fragment {
             @Override
             public void onRowClick(View view, final int position) {
 
-                Intent intent = new Intent(getContext(), DetailActivity.class);
-                intent.putExtra("id", KostList.get(position).getId());
-                intent.putExtra("nama", KostList.get(position).getNama());
+                Intent intent = new Intent(getContext(), DetailActivityKontrakan.class);
+                intent.putExtra(DetailActivityKontrakan.KONTRAKAN_KEY,KontrakanList.get(position));
                 startActivity(intent);
 
             }
@@ -94,22 +113,25 @@ public class FragmentKontrakan extends Fragment {
     public void getKontrakan(){
         pb.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
-
-        Call<List<Kost>> call = apiInterface.getPets();
-        call.enqueue(new Callback<List<Kost>>() {
+        Call<List<Item>> call = apiInterface.get_kontrakan();
+        call.enqueue(new Callback<List<Item>>() {
             @Override
-            public void onResponse(Call<List<Kost>> call, Response<List<Kost>> response) {
-                KostList = response.body();
+            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+                KontrakanList = response.body();
+                if(KontrakanList.isEmpty()) {
+                    recyclerView.setVisibility(View.GONE);
+                    img_empty_kontrakan.setVisibility(View.VISIBLE);
+                }
                 Log.i(MainActivity.class.getSimpleName(), response.body().toString());
-                adapter = new Adapter(KostList, getContext(), listener);
-                recyclerView.setAdapter(adapter);
+                adapterKontrakan = new Adapter(KontrakanList, getContext(), listener);
+                recyclerView.setAdapter(adapterKontrakan);
                 pb.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
-                adapter.notifyDataSetChanged();
+                adapterKontrakan.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<Kost>> call, Throwable t) {
+            public void onFailure(Call<List<Item>> call, Throwable t) {
                 Toast.makeText(getContext(), "Terjadi kesalahan saat memuat data, Coba periksa Koneksi Internet Anda",
                         Toast.LENGTH_SHORT).show();
             }
@@ -118,10 +140,14 @@ public class FragmentKontrakan extends Fragment {
 
 
 
+
+
     @Override
     public void onResume() {
         super.onResume();
-        getKontrakan();
+
+            getKontrakan();
+
     }
 
     @Override

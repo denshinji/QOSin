@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -29,11 +30,11 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button btnlogin;
+    private ImageView btnlogin;
     private ProgressBar pr;
     private EditText username,password;
     private SessionManager sessionManager;
-    private static String URL_LOGIN = "https://qosin.id/login.php";
+    private static String URL_LOGIN = "https://qosin.id/api_android/login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +85,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                     String jenis_akun = object.getString("jenis_akun").trim();
+                                    String id = object.getString("id").trim();
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
                                     String username = object.getString("username").trim();
                                     String notelp = object.getString("nope").trim();
 
 
-                                    sessionManager.createSession(jenis_akun, name, email, username, notelp);
+                                    sessionManager.createSession(jenis_akun, name, email, username, notelp,id);
                                     Toast.makeText(LoginActivity.this,"Welcome "+name,Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -108,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(LoginActivity.this, "Email atau Password " + "\n Salah"+toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_SHORT).show();
                             pr.setVisibility(View.GONE);
                             btnlogin.setVisibility(View.VISIBLE);
                         }

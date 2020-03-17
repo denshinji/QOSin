@@ -5,17 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mobile.qosin.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
-public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH> {
+public class SliderAbout extends SliderViewAdapter<SliderAbout.SliderAdapterVH> {
 
     private Context context;
 
-    public SliderAdapter(Context context) {
+    public SliderAbout(Context context) {
         this.context = context;
     }
 

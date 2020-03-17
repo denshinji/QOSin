@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.mobile.qosin.Adapter.RecyclerViewAdapterButton;
 import com.mobile.qosin.Adapter.RecyclerViewAdapterCampus;
-import com.mobile.qosin.Adapter.SliderAdapter;
-import com.mobile.qosin.Adapter.SliderAdapter2;
+import com.mobile.qosin.Adapter.SliderAbout;
+import com.mobile.qosin.Adapter.SliderPromo;
 import com.mobile.qosin.R;
 import com.mobile.qosin.Tools.SessionManager;
 import com.smarteist.autoimageslider.IndicatorAnimations;
@@ -50,14 +50,14 @@ public class Dashboard extends Fragment {
         nama = view.findViewById(R.id.get_nama);
         email = view.findViewById(R.id.get_email);
         SliderView sll = view.findViewById(R.id.slider_template);
-        sll.setSliderAdapter(new SliderAdapter(getContext()));
+        sll.setSliderAdapter(new SliderAbout(getContext()));
         sll.startAutoCycle();
         sll.setScrollTimeInSec(6);
         sll.setIndicatorAnimation(IndicatorAnimations.WORM);
         sll.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
 
         SliderView slp = view.findViewById(R.id.slider_template_promo);
-        slp.setSliderAdapter(new SliderAdapter2(getContext()));
+        slp.setSliderAdapter(new SliderPromo(getContext()));
         slp.setIndicatorAnimation(IndicatorAnimations.WORM);
         slp.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         HashMap<String , String> user = sessionManager.getUserDetail();
@@ -78,14 +78,12 @@ public class Dashboard extends Fragment {
         recyclerViewbutton.setLayoutManager(layoutManagerbutton);
         RecyclerViewAdapterButton adapterbutton = new RecyclerViewAdapterButton(getActivity(), mImage4,mDesc2);
         recyclerViewbutton.setAdapter(adapterbutton);
-       initrvcampus();
-       initrvbutton();
-
+       initrvcampusandbutton();
 
     return view;
     }
 
-    private void initrvcampus() {
+    private void initrvcampusandbutton() {
         mImage3.add(R.drawable.unand);
         mDesc.add("UNAND");
         mImage3.add(R.drawable.poli);
@@ -96,8 +94,7 @@ public class Dashboard extends Fragment {
         mDesc.add("UNES");
         mImage3.add(R.drawable.bunghatta);
         mDesc.add("BUNG HATTA");
-    }
-    private void initrvbutton() {
+
         mImage4.add(R.mipmap.icon_kost2);
         mDesc2.add("KOST");
         mImage4.add(R.mipmap.icon_kontrakan2);
@@ -105,6 +102,7 @@ public class Dashboard extends Fragment {
         mImage4.add(R.mipmap.icon_event2);
         mDesc2.add("EVENT");
     }
+
 
 
 }

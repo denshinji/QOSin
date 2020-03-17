@@ -17,10 +17,10 @@
                 android:id="@+id/tab_movie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorHijau"
+                android:background="@android:color/white"
                 app:tabIndicatorFullWidth="true"
-                app:tabSelectedTextColor="@android:color/white"
-                app:tabIndicatorColor="@android:color/white"
+                app:tabSelectedTextColor="@color/colorHijau"
+                app:tabIndicatorColor="@color/colorHijau"
                 app:tabTextColor="@color/colorGrey">
 
                 <com.google.android.material.tabs.TabItem

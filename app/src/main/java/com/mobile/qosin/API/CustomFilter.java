@@ -3,6 +3,7 @@ package com.mobile.qosin.API;
 import android.widget.Filter;
 
 import com.mobile.qosin.Adapter.Adapter;
+import com.mobile.qosin.Model.Item;
 import com.mobile.qosin.Model.Kost;
 
 import java.util.ArrayList;
@@ -10,9 +11,9 @@ import java.util.ArrayList;
 public class CustomFilter extends Filter {
 
     Adapter adapters;
-    ArrayList<Kost> filterList;
+    ArrayList<Item> filterList;
 
-    public CustomFilter(ArrayList<Kost> filterList, Adapter adapter)
+    public CustomFilter(ArrayList<Item> filterList, Adapter adapter)
     {
         this.adapters=adapter;
         this.filterList=filterList;
@@ -29,7 +30,7 @@ public class CustomFilter extends Filter {
             //CHANGE TO UPPER
             constraint=constraint.toString().toUpperCase();
             //STORE OUR FILTERED PLAYERS
-            ArrayList<Kost> filteredKost=new ArrayList<>();
+            ArrayList<Item> filteredKost=new ArrayList<>();
 
             for (int i=0;i<filterList.size();i++)
             {
@@ -56,7 +57,7 @@ public class CustomFilter extends Filter {
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
 
-        adapters.kosts = (ArrayList<Kost>) results.values;
+        adapters.item = (ArrayList<Item>) results.values;
 
         //REFRESH
         adapters.notifyDataSetChanged();

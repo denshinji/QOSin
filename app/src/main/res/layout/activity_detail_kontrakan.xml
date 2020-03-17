@@ -6,10 +6,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:theme="@style/Platform.MaterialComponents.Light"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/qosin_putih" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/titlename"
+            android:text="Kontrakan"
+            android:textColor="@color/colorHijau"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Activity.DetailActivity"
+    android:layout_below="@+id/toolbar_detail"
+    tools:context=".Activity.DetailActivityKost"
     android:layout_marginBottom="80dp">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -27,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp">
 
-            <com.smarteist.autoimageslider.SliderView
+            <ViewFlipper
                 android:id="@+id/slider_foto_kontrakan"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
@@ -35,7 +61,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></com.smarteist.autoimageslider.SliderView>
+                app:layout_constraintTop_toTopOf="parent"></ViewFlipper>
 
             <TextView
                 android:id="@+id/nama_kontrakan"
@@ -43,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/slider_foto_kontrakan"
                 android:layout_marginTop="15dp"
-                android:text="KOST BUK ITA"
+                android:text="KONTRAKAN BUK ITA"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -86,7 +112,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/slider_foto_kontrakan">
 
                 <TextView
-                    android:id="@+id/jumlah_kamar"
+                    android:id="@+id/jumlah_kamar_kontrakan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -137,11 +163,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Ukuran Kamar  :"
+                android:layout_marginLeft="20dp"
+                android:text="Ukuran Kamar"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <TextView
+                android:id="@+id/titik2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
@@ -149,11 +185,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="2dp"
                 android:text="3 X 3 Meter"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.07"
-                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintStart_toEndOf="@+id/titik2"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
@@ -161,23 +196,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Kamar Mandi    :"
+                android:text="Banyak kamar mandi"
+                android:layout_marginLeft="20dp"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/titik3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/titik2" />
 
             <TextView
                 android:id="@+id/dt_kamarmandi_kontrakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="2dp"
                 android:text="Dalam"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/titik3"
                 app:layout_constraintTop_toBottomOf="@+id/dt_ukuran_kamar_kontrakan" />
 
             <TextView
@@ -185,12 +229,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Jam Kunci         :"
+                android:layout_marginLeft="20dp"
+                android:text="Jam Kunci"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <TextView
+                android:id="@+id/titik4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/titik3" />
+
 
             <TextView
                 android:id="@+id/dt_jamkunci_kontrakan"
@@ -198,34 +253,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="24jam"
+                android:layout_marginLeft="2dp"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/titik4"
                 app:layout_constraintTop_toBottomOf="@+id/dt_kamarmandi_kontrakan" />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:text="AC                       :"
+                android:text="AC"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <TextView
+                android:id="@+id/titik5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/titik4" />
 
             <TextView
                 android:id="@+id/dt_ac_kontrakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="2dp"
                 android:text="ya"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/titik5"
                 app:layout_constraintTop_toBottomOf="@+id/dt_jamkunci_kontrakan" />
 
             <TextView
@@ -233,108 +297,158 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Wifi                     :"
+                android:layout_marginLeft="20dp"
+                android:text="Wifi"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <TextView
+                android:id="@+id/titik6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/titik5" />
+
 
             <TextView
                 android:id="@+id/dt_wifi_kontrakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="2dp"
                 android:text="ya"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/titik6"
                 app:layout_constraintTop_toBottomOf="@+id/dt_ac_kontrakan" />
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Listrik                 :"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="4dp"
+                android:text="Listrik"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+            <TextView
+                android:id="@+id/titik7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/titik6" />
 
             <TextView
                 android:id="@+id/dt_listrik_kontrakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="5dp"
                 android:text="ya"
+                android:layout_marginLeft="2dp"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/titik7"
                 app:layout_constraintTop_toBottomOf="@+id/dt_wifi_kontrakan" />
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:text="Bawa Hewan    :"
+                android:text="Bawa Hewan"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/titik8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/titik7" />
 
             <TextView
                 android:id="@+id/dt_bawahewan_kontrakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
                 android:layout_marginTop="5dp"
                 android:text="tidak"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/titik8"
                 app:layout_constraintTop_toBottomOf="@+id/dt_listrik_kontrakan" />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Parkiran Motor :"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="20dp"
+                android:text="Parkiran Motor"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+            <TextView
+                android:id="@+id/titik9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/titik8" />
 
             <TextView
                 android:id="@+id/dt_parkiranmotor_kontrakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="2dp"
                 android:text="tidak"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/titik9"
                 app:layout_constraintTop_toBottomOf="@+id/dt_bawahewan_kontrakan" />
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:text="Parkiran Mobil  :"
+                android:text="Parkiran Mobil"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+            <TextView
+                android:id="@+id/titik10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/titik9" />
+
 
             <TextView
                 android:id="@+id/dt_parkiranmobil_kontrakan"
@@ -342,10 +456,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="tidak"
+                android:layout_marginLeft="2dp"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/titik10"
                 app:layout_constraintTop_toBottomOf="@+id/dt_parkiranmotor_kontrakan" />
 
             <TextView
@@ -353,23 +466,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Fasilitas Tambahan  :"
+                android:layout_marginLeft="20dp"
+                android:text="Fasilitas Tambahan"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.07"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
             <TextView
-                android:id="@+id/dt_tambahan"
+                android:id="@+id/titik11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/titik10" />
+
+
+            <TextView
+                android:id="@+id/dt_tambahan_kontrakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="tidak"
+                android:layout_marginLeft="2dp"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView17"
+                app:layout_constraintStart_toEndOf="@+id/titik11"
                 app:layout_constraintTop_toBottomOf="@+id/dt_parkiranmobil_kontrakan" />
 
             <TextView
@@ -437,7 +560,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/harga_kontrakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rp.12000000 / Tahun"
@@ -461,7 +584,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                app:layout_constraintTop_toBottomOf="@+id/harga_kontrakan"
                 app:layout_constraintVertical_bias="0.01999998" />
 
             <TextView
@@ -473,7 +596,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.01"
                 app:layout_constraintStart_toEndOf="@+id/textView21"
-                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                app:layout_constraintTop_toBottomOf="@+id/harga_kontrakan"
                 app:layout_constraintVertical_bias="0.01999998" />
 
             <androidx.cardview.widget.CardView
@@ -487,6 +610,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/btn_pesan_kontrakan"
                     android:layout_height="match_parent">
 
                     <TextView

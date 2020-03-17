@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -36,7 +35,7 @@
     android:layout_below="@+id/toolbar_detail"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Activity.DetailActivity"
+    tools:context=".Activity.DetailActivityKost"
     android:layout_marginBottom="80dp">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -163,23 +162,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Ukuran Kamar  :"
+                android:text="Ukuran Kamar"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+
             <TextView
                 android:id="@+id/dt_ukuran_kamar_kost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
                 android:text="3 X 3 Meter"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.07"
-                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
@@ -187,23 +186,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Kamar Mandi    :"
+                android:text="Kamar Mandi"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
+
             <TextView
                 android:id="@+id/dt_kamarmandi_kost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="Dalam"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/dt_ukuran_kamar_kost" />
 
             <TextView
@@ -211,7 +210,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Jam Kunci         :"
+                android:text="Jam Kunci"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
@@ -223,11 +222,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="24jam"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/dt_kamarmandi_kost" />
 
             <TextView
@@ -235,7 +233,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="AC                       :"
+                android:text="AC"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
@@ -247,19 +245,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="ya"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/dt_jamkunci_kost" />
 
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Wifi                     :"
+                android:layout_marginTop="4dp"
+                android:text="Wifi"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
@@ -271,11 +268,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="ya"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/dt_ac_kost" />
 
             <TextView
@@ -283,7 +279,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Listrik                 :"
+                android:text="Listrik"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
@@ -295,11 +291,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="ya"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/dt_wifi_kost" />
 
             <TextView
@@ -307,7 +302,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Bawa Hewan    :"
+                android:text="Bawa Hewan"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
@@ -319,11 +314,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="tidak"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/dt_listrik_kost" />
 
             <TextView
@@ -331,7 +325,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Parkiran Motor :"
+                android:text="Parkiran Motor"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
@@ -343,11 +337,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="tidak"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/dt_bawahewan_kost" />
 
             <TextView
@@ -355,7 +348,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Parkiran Mobil  :"
+                android:text="Parkiran Mobil"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
@@ -367,11 +360,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="tidak"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/dt_parkiranmotor_kost" />
 
             <TextView
@@ -379,7 +371,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Fasilitas Tambahan  :"
+                android:text="Fasilitas Tambahan"
+                android:layout_marginLeft="5dp"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.07"
@@ -392,9 +385,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="tidak"
+                android:layout_marginLeft="5dp"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/dt_parkiranmobil_kost" />
 
@@ -513,6 +505,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/btn_pesan"
                     android:layout_height="match_parent">
 
                     <TextView

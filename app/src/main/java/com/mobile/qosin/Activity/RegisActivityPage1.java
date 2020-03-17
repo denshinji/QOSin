@@ -1,19 +1,15 @@
 package com.mobile.qosin.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,15 +25,16 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisActivity extends AppCompatActivity {
+public class RegisActivityPage1 extends AppCompatActivity {
 
-    private Button btn_regist;
+    private ImageView btn_regist;
     private ProgressBar pr;
-    private EditText nama,email,password,nickname,notelp;
+    private EditText email,notelp;
+    String mNamalengkaps,mPasswords,mUsernames;
 
 
 
-    private String URL_REGIST = "https://qosin.id/register.php";
+    private String URL_REGIST = "https://qosin.id/api_android/register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,27 +42,27 @@ public class RegisActivity extends AppCompatActivity {
         setContentView(R.layout.activity_regis);
 
         btn_regist = findViewById(R.id.r_btn_regist);
-        nama = findViewById(R.id.r_in_name);
-        nickname = findViewById(R.id.r_in_username);
         pr = findViewById(R.id.r_pr);
         notelp = findViewById(R.id.r_in_nope);
-
+        email = findViewById(R.id.r_in_email);
+        mNamalengkaps = getIntent().getStringExtra("nama");
+        mPasswords = getIntent().getStringExtra("password");
+        mUsernames = getIntent().getStringExtra("username");
 
         email = findViewById(R.id.r_in_email);
-        password = findViewById(R.id.r_in_password);
         btn_regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mUsername = nickname.getText().toString().trim();
-                String mPass = password.getText().toString().trim();
-                String mNama = nama.getText().toString().trim();
+                String mUsername = mUsernames;
+                String mPass = mPasswords;
+                String mNama = mNamalengkaps;
                 String mEmail = email.getText().toString().trim();
                 String mNotelp = notelp.getText().toString().trim();
 
                 if (!mUsername.isEmpty() || !mPass.isEmpty() || !mEmail.isEmpty() || !mNama.isEmpty() ||  !mNotelp.isEmpty() ) {
                     Regist();
                 } else {
-                    nickname.setError("REGISTRASI ERROR PERIKSA KEMBALI");
+                  Toast.makeText(getApplicationContext(),"Pendaftaran gagal silahkan check kembali",Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -77,10 +74,10 @@ public class RegisActivity extends AppCompatActivity {
     private void Regist(){
         pr.setVisibility(View.VISIBLE);
         btn_regist.setVisibility(View.GONE);
-        final String name = this.nama.getText().toString().trim();
-        final String nick = this.nickname.getText().toString().trim();
+        final String name = this.mNamalengkaps.trim();
+        final String nick = this.mUsernames.trim();
         final String emails = this.email.getText().toString().trim();
-        final String passwords = this.password.getText().toString().trim();
+        final String passwords = this.mPasswords.trim();
         final String notelp = this.notelp.getText().toString().trim();
 
 
@@ -93,15 +90,15 @@ public class RegisActivity extends AppCompatActivity {
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                Toast.makeText(RegisActivity.this, "Hai Pendaftaran Berhasil! Silahkan Login", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RegisActivity.this, LoginActivity.class);
+                                Toast.makeText(RegisActivityPage1.this, "Hai Pendaftaran Berhasil! Silahkan Login", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegisActivityPage1.this, LoginActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(RegisActivity.this, "Pendaftaran Gagal! Periksa Kembali " + e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisActivityPage1.this, "Pendaftaran Gagal! Periksa Kembali " + e.toString(), Toast.LENGTH_SHORT).show();
                             pr.setVisibility(View.GONE);
                             btn_regist.setVisibility(View.VISIBLE);
                         }
@@ -110,7 +107,7 @@ public class RegisActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(RegisActivity.this, "Register Gagal! " + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisActivityPage1.this, "Register Gagal! " + error.toString(), Toast.LENGTH_SHORT).show();
                         pr.setVisibility(View.GONE);
                         btn_regist.setVisibility(View.VISIBLE);
                     }

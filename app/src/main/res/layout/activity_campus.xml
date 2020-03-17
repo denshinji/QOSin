@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ActivityCampus">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_campus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:theme="@style/Platform.MaterialComponents.Light"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/qosin_putih" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/titlename"
+            android:text="Near Campus"
+            android:textColor="@color/colorHijau"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Sekitar Unand"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/judul_campus"
+        android:textStyle="bold"
+        android:textColor="@color/grey_90"
+        android:layout_below="@id/toolbar_campus"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_view_campus"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:layout_below="@id/judul_campus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_kost" />
+    <ProgressBar
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/pb_campus"
+        android:visibility="visible"
+        android:layout_centerInParent="true"/>
+
+    <ImageView
+        android:id="@+id/img_no_data_campus"
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:background="@drawable/no_data"/>
+</RelativeLayout>

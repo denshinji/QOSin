@@ -40,6 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
+                    android:inputType="textCapCharacters"
                     android:layout_marginStart="20dp"
                     android:text="HAI DENI"
                     android:textColor="@color/grey_90"

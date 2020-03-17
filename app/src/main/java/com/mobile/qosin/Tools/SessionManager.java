@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.mobile.qosin.Activity.MainActivity;
-import com.mobile.qosin.Activity.MenuLogin;
+import com.mobile.qosin.Activity.SplashMenu;
 
 import java.util.HashMap;
 
@@ -22,6 +22,7 @@ public class SessionManager {
     public static final String USERNAME = "USERNAME";
     public static final String NOTELP = "NOTELP";
     public static final String JENIS_AKUN = "JENIS_AKUN";
+    public static final String ID = "ID";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -29,11 +30,12 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createSession(String jenis_akun, String name, String email, String username, String notelp){
+    public void createSession(String jenis_akun, String name, String email, String username, String notelp,String id){
 
         editor.putBoolean(LOGIN, true);
         editor.putString(JENIS_AKUN, jenis_akun);
         editor.putString(NAME, name);
+        editor.putString(ID, id);
         editor.putString(EMAIL, email);
         editor.putString(USERNAME, username);
         editor.putString(NOTELP, notelp);
@@ -48,7 +50,7 @@ public class SessionManager {
     public void checkLogin(){
 
         if (!this.isLoggin()){
-            Intent i = new Intent(context, MenuLogin.class);
+            Intent i = new Intent(context, SplashMenu.class);
             context.startActivity(i);
             ((MainActivity) context).finish();
         }
@@ -62,6 +64,7 @@ public class SessionManager {
         user.put(EMAIL, sharedPreferences.getString(EMAIL, null));
         user.put(USERNAME, sharedPreferences.getString(USERNAME, null));
         user.put(NOTELP, sharedPreferences.getString(NOTELP, null));
+        user.put(ID, sharedPreferences.getString(ID, null));
         return user;
     }
 
@@ -69,7 +72,7 @@ public class SessionManager {
 
         editor.clear();
         editor.commit();
-        Intent i = new Intent(context, MenuLogin.class);
+        Intent i = new Intent(context, SplashMenu.class);
         context.startActivity(i);
 
     }
