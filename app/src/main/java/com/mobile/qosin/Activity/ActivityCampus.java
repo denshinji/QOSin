@@ -1,19 +1,17 @@
 package com.mobile.qosin.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobile.qosin.API.ApiClient;
 import com.mobile.qosin.API.ApiInterface;
@@ -21,7 +19,6 @@ import com.mobile.qosin.Adapter.Adapter;
 import com.mobile.qosin.Model.Item;
 import com.mobile.qosin.R;
 
-import java.sql.ClientInfoStatus;
 import java.util.List;
 
 import retrofit2.Call;
@@ -86,7 +83,6 @@ public class ActivityCampus extends AppCompatActivity {
                     pb_campus.setVisibility(View.GONE);
                     recyclerView_campus.setVisibility(View.GONE);
                     img_empty_kampus.setVisibility(View.VISIBLE);
-                    Toast.makeText(ActivityCampus.this, "RV Kosong", Toast.LENGTH_LONG).show();
                 } else {
                     Log.i(MainActivity.class.getSimpleName(), response.body().toString());
                     adapterKampus = new Adapter(KampusList, getApplicationContext(), listener);
