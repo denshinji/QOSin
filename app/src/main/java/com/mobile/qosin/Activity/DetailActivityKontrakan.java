@@ -4,24 +4,25 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.bumptech.glide.Glide;
+import com.mobile.qosin.Adapter.SliderFotoDetail;
 import com.mobile.qosin.Model.Item;
 import com.mobile.qosin.R;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 
 public class DetailActivityKontrakan extends AppCompatActivity {
     public static String KONTRAKAN_KEY = "Kontrakan_key";
-    ArrayList<String> foto_kontrakan;
-    ViewFlipper v_flipper_kontrakan;
+    ArrayList<String> foto_kontrakan = new ArrayList<>();
+    SliderView slkn;
     String namakontrakan;
     String wilayah;
     String kamarjumlah;
@@ -60,7 +61,7 @@ public class DetailActivityKontrakan extends AppCompatActivity {
         });
         getSupportActionBar().setTitle(null);
         btn_pesan_kontrakan = findViewById(R.id.btn_pesan_kontrakan);
-        v_flipper_kontrakan = findViewById(R.id.slider_foto_kontrakan);
+        slkn = findViewById(R.id.slider_foto_kontrakan);
         t_namakontrakan = findViewById(R.id.nama_kontrakan);
         t_hargakontrakan = findViewById(R.id.harga_kontrakan);
         t_wilayah = findViewById(R.id.detail_alamat_kontrakan);
@@ -90,9 +91,11 @@ public class DetailActivityKontrakan extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        getDetailFotoKontrakan();
 
 
     }
+
 
     private void getKontrakan() {
         Intent intent = getIntent();
@@ -140,23 +143,14 @@ public class DetailActivityKontrakan extends AppCompatActivity {
         foto_kontrakan.add(image_depan);
         foto_kontrakan.add(image_kamar);
         foto_kontrakan.add(image_kamar_mandi);
-        flipperImage(foto_kontrakan);
     }
 
-    private void flipperImage(ArrayList<String> foto_kost) {
-        for(int i=0;i<foto_kost.size();i++){
-            ImageView imageView = new ImageView(this);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            Glide.with(getApplicationContext())
-                    .load(foto_kost.get(i).toString())
-                    .into(imageView);
-            v_flipper_kontrakan.addView(imageView);
-            v_flipper_kontrakan.setFlipInterval(8000);
-            v_flipper_kontrakan.setAutoStart(true);
-
-            v_flipper_kontrakan.setInAnimation(this,R.anim.slide_right);
-            v_flipper_kontrakan.setOutAnimation(this,R.anim.slide_ou_left);
-        }
+    private void getDetailFotoKontrakan() {
+        slkn.setSliderAdapter(new SliderFotoDetail(getApplicationContext(), foto_kontrakan));
+        slkn.startAutoCycle();
+        slkn.setScrollTimeInSec(6);
+        slkn.setIndicatorAnimation(IndicatorAnimations.WORM);
+        slkn.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
     }
 
 

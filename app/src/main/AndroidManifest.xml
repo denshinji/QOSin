@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/roundicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.SearchActivity"></activity>
+        <activity android:name=".Tools.DetailFoto"></activity>
+        <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.ActivityCampus" />
         <activity android:name=".Activity.RegisActivityPage2" />
         <activity android:name=".Activity.ActivityKontrakan" />

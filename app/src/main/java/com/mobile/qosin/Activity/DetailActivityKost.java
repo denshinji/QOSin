@@ -1,30 +1,29 @@
 package com.mobile.qosin.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ViewFlipper;
 
-import com.bumptech.glide.Glide;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.mobile.qosin.Adapter.SliderFotoDetail;
 import com.mobile.qosin.Model.Item;
-import com.mobile.qosin.Model.Kost;
 import com.mobile.qosin.R;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 
 public class DetailActivityKost extends AppCompatActivity {
     public static String KOST_KEY = "Kost_key";
-    ArrayList<String> foto_kost;
-    ViewFlipper v_flipper;
+    ArrayList<String> foto_kost = new ArrayList<>();
+    SliderView slk;
     String namakost;
     String wilayah;
     String kamarsisa;
@@ -54,6 +53,7 @@ public class DetailActivityKost extends AppCompatActivity {
         setContentView(R.layout.activity_detail_kost);
         Toolbar toolbar = findViewById(R.id.toolbar_detail);
         setSupportActionBar(toolbar);
+        slk = findViewById(R.id.slider_foto_kost);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +63,6 @@ public class DetailActivityKost extends AppCompatActivity {
         });
         getSupportActionBar().setTitle(null);
         btn_pesan = findViewById(R.id.btn_pesan);
-        v_flipper = findViewById(R.id.slider_foto_kost);
         t_namakost = findViewById(R.id.nama_kost);
         t_hargakost = findViewById(R.id.harga_kost);
         t_wilayah = findViewById(R.id.detail_alamat_kost);
@@ -94,8 +93,11 @@ public class DetailActivityKost extends AppCompatActivity {
             }
         });
 
+        getSliderFotoDetail();
+
 
     }
+
 
     private void getKost() {
         Intent intent = getIntent();
@@ -142,29 +144,20 @@ public class DetailActivityKost extends AppCompatActivity {
         image_depan = kost.getImage_depan();
         image_kamar_mandi = kost.getImage_kamar();
         image_kamar = kost.getImage_luar();
-        foto_kost = new ArrayList<String>();
         foto_kost.add(image_cover);
         foto_kost.add(image_depan);
         foto_kost.add(image_kamar);
         foto_kost.add(image_kamar_mandi);
-        flipperImage(foto_kost);
     }
 
-    private void flipperImage(ArrayList<String> foto_kost) {
-        for(int i=0;i<foto_kost.size();i++){
-            ImageView imageView = new ImageView(this);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            Glide.with(getApplicationContext())
-                    .load(foto_kost.get(i).toString())
-                    .into(imageView);
-            v_flipper.addView(imageView);
-            v_flipper.setFlipInterval(8000);
-            v_flipper.setAutoStart(true);
-
-            v_flipper.setInAnimation(this,R.anim.slide_right);
-            v_flipper.setOutAnimation(this,R.anim.slide_ou_left);
-        }
+    private void getSliderFotoDetail() {
+        slk.setSliderAdapter(new SliderFotoDetail(getApplicationContext(), foto_kost));
+        slk.startAutoCycle();
+        slk.setScrollTimeInSec(6);
+        slk.setIndicatorAnimation(IndicatorAnimations.WORM);
+        slk.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
     }
+
 
 
 }

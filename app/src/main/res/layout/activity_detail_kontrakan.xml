@@ -53,15 +53,15 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp">
 
-            <ViewFlipper
+            <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/slider_foto_kontrakan"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="250dp"
-                android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></ViewFlipper>
+                app:layout_constraintTop_toTopOf="parent"></com.smarteist.autoimageslider.SliderView>
+
 
             <TextView
                 android:id="@+id/nama_kontrakan"
