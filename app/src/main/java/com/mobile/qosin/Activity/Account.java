@@ -2,16 +2,18 @@ package com.mobile.qosin.Activity;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.mobile.qosin.R;
-import com.mobile.qosin.SessionManager;
+import com.mobile.qosin.Tools.SessionManager;
+
+import java.util.HashMap;
 
 
 /**
@@ -19,7 +21,8 @@ import com.mobile.qosin.SessionManager;
  */
 public class Account extends Fragment {
 
-    private Button logout;
+    private RelativeLayout logout;
+    private TextView name_profile, email_profile;
     private SessionManager sessionManager;
     public Account() {
         // Required empty public constructor
@@ -39,8 +42,16 @@ public class Account extends Fragment {
                 sessionManager.logout();
             }
         });
+        name_profile = view.findViewById(R.id.name_profile);
+        email_profile = view.findViewById(R.id.email_profile);
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        String name = user.get(SessionManager.USERNAME);
+        String email = user.get(SessionManager.EMAIL);
+        name_profile.setText(name);
+        email_profile.setText(email);
 
     return view;
     }
+
 
 }

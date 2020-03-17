@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:id="@+id/titlename"
-            android:text="KOST"
+            android:text="Kost"
             android:textColor="@color/colorHijau"
             android:textSize="25sp"
             android:textStyle="bold" />

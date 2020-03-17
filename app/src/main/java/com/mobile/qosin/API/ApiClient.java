@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "http://qosin.id/";
+    private static final String BASE_URL = "http://qosin.id/api_android/";
     private static Retrofit retrofit;
 
     public static Retrofit getApiClient(){

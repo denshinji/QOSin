@@ -1,21 +1,14 @@
 package com.mobile.qosin.Activity;
 
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.SearchManager;
-import android.content.Context;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.SearchView;
-
-import com.mobile.qosin.TabKost;
+import com.mobile.qosin.Kost.TabKost;
 import com.mobile.qosin.R;
 
 public class ActivityKost extends AppCompatActivity {

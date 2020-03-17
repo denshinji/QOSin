@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rv_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -46,16 +45,15 @@
                android:layout_width="wrap_content"
                android:layout_height="25dp"
                android:layout_margin="5dp"
-               android:layout_marginRight="20dp"
+               android:elevation="10dp"
                app:cardBackgroundColor="@color/colorHijau"
                app:cardCornerRadius="13dp"
-               android:elevation="30dp"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.74"
-               app:layout_constraintStart_toEndOf="@+id/item_namacontent"
+               app:layout_constraintHorizontal_bias="0.89"
+               app:layout_constraintStart_toEndOf="@+id/item_rate"
                app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintVertical_bias="0.75">
+               app:layout_constraintVertical_bias="0.81">
 
                <TextView
                    android:id="@+id/item_harga"
@@ -67,7 +65,7 @@
                    android:paddingTop="4dp"
                    android:paddingRight="20dp"
                    android:paddingBottom="2dp"
-                   android:text="Rp.1.000.000"
+                   android:text="Rp.1.00000000.000"
                    android:textColor="@android:color/white"
                    android:textSize="12sp"
                    android:textStyle="bold"

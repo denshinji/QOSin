@@ -1,19 +1,15 @@
 package com.mobile.qosin.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,7 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mobile.qosin.R;
-import com.mobile.qosin.SessionManager;
+import com.mobile.qosin.Tools.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,11 +29,11 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button btnlogin;
+    private static String URL_LOGIN = "https://qosin.id/api_android/login.php";
     private ProgressBar pr;
     private EditText username,password;
     private SessionManager sessionManager;
-    private static String URL_LOGIN = "https://qosin.id/login.php";
+    private ImageView btnlogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,13 +84,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                     String jenis_akun = object.getString("jenis_akun").trim();
+                                    String id = object.getString("id").trim();
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
                                     String username = object.getString("username").trim();
                                     String notelp = object.getString("nope").trim();
 
 
-                                    sessionManager.createSession(jenis_akun, name, email, username, notelp);
+                                    sessionManager.createSession(jenis_akun, name, email, username, notelp, id);
                                     Toast.makeText(LoginActivity.this,"Welcome "+name,Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -112,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(LoginActivity.this, "Email atau Password " + "\n Salah"+toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_SHORT).show();
                             pr.setVisibility(View.GONE);
                             btnlogin.setVisibility(View.VISIBLE);
                         }

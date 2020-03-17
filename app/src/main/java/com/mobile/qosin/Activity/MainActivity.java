@@ -1,40 +1,38 @@
 package com.mobile.qosin.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.annotation.SuppressLint;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.mobile.qosin.Adapter.CustomBottomBar;
 import com.mobile.qosin.Adapter.ItemAdapter;
 import com.mobile.qosin.Dashboard.Dashboard;
+import com.mobile.qosin.FavoriteFragment;
 import com.mobile.qosin.Model.CustomBottomItem;
 import com.mobile.qosin.R;
-import com.mobile.qosin.SessionManager;
+import com.mobile.qosin.Tools.SessionManager;
 
 public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemSelectorInterface {
     private boolean doubleBackToExitPressedOnce = false;
     private SessionManager sessionManager;
-    private Button logout;
     private CustomBottomBar customBottomBar;
+    private TextView titlename;
     public static final int HOME = 0;
     public static final int FAVORITE = 1;
     public static final int PROFILE = 2;
+
 
 
     @SuppressLint("ResourceType")
@@ -49,8 +47,12 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
         Dashboard dashboard = new Dashboard();
         Toolbar toolbar = findViewById(R.id.toolbar_include);
         setSupportActionBar(toolbar);
+        titlename = findViewById(R.id.titlename);
         getSupportActionBar().setTitle(null);
-
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_main, dashboard);
+        transaction.addToBackStack(null);
+        transaction.commit();
         customBottomBar = new CustomBottomBar(this, findViewById(R.id.customBottomBar), MainActivity.this);
         initItems();
         customBottomBar.changeBackground(getString(R.color.colorItemDefaultBackground));
@@ -63,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
     @SuppressLint("ResourceType")
     private void initItems() {
         CustomBottomItem home = new CustomBottomItem(HOME, R.drawable.icon_dashboard_home, getString(R.string.home_title), getString(R.color.colorItemBackground), getString(R.color.colorHijau));
-        CustomBottomItem favorite = new CustomBottomItem(FAVORITE, R.drawable.ic_favorite_black_24dp, getString(R.string.favorite_title), getString(R.color.colorItem1Background), getString(R.color.colorHijau));
-        CustomBottomItem profile = new CustomBottomItem(PROFILE, R.drawable.profile_icon, getString(R.string.profile_title), getString(R.color.colorItem2Background), getString(R.color.colorHijau));
+        CustomBottomItem favorite = new CustomBottomItem(FAVORITE, R.drawable.ic_favorite_black_24dp, getString(R.string.favorite_title), getString(R.color.colorItemBackground), getString(R.color.colorHijau));
+        CustomBottomItem profile = new CustomBottomItem(PROFILE, R.drawable.profile_icon, getString(R.string.profile_title), getString(R.color.colorItemBackground), getString(R.color.colorHijau));
 
         customBottomBar.addItem(home);
         customBottomBar.addItem(favorite);
@@ -74,40 +76,15 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        final SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        MenuItem searchMenuItem = menu.findItem(R.id.action_search);
-
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName())
-        );
-        searchView.setQueryHint("CARI Kost");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(final String query) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                return false;
-            }
-        });
-
-        searchMenuItem.getIcon().setVisible(false, false);
 
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_search) {
+            Intent i = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -120,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+
 
         }
         this.doubleBackToExitPressedOnce = true;
@@ -134,27 +112,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
         }, 2000);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    Fragment selectedFragment = null;
-                    switch (menuItem.getItemId()) {
-                        case R.id.navigation_dashboard_menu:
-                            selectedFragment = new Dashboard();
 
-                            break;
-                        case R.id.navigation_profile_menu:
-                            selectedFragment = new Account();
-
-                            break;
-
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, selectedFragment).commit();
-                    overridePendingTransition(R.anim.slide_left,R.anim.slide_ou_right);
-                    return true;
-                }
-            };
 
     @Override
     public void itemSelect(int selectedID) {
@@ -162,13 +120,18 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
         switch (selectedID){
             case HOME:
                 selectedFragment = new Dashboard();
+                titlename.setText("QOSin");
                 break;
             case FAVORITE:
-                selectedFragment = new Dashboard();
+                selectedFragment = new FavoriteFragment();
+                titlename.setText("Favorite List");
                 break;
             case PROFILE:
                  selectedFragment = new Account();
+                titlename.setText("Account");
                 break;
         }
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, selectedFragment).commit();
+        overridePendingTransition(R.anim.slide_right, R.anim.slide_ou_left);
     }
 }

@@ -16,24 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.mobile.qosin.API.CustomFilter;
-import com.mobile.qosin.Model.Kost;
+import com.mobile.qosin.Model.Item;
 import com.mobile.qosin.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implements Filterable {
 
-    public List<Kost> kosts, kostsFilter;
+    public List<Item> item, ItemFilter;
     private Context context;
     private RecyclerViewClickListener mListener;
     CustomFilter filter;
 
-    public Adapter (List<Kost> kosts, Context context, RecyclerViewClickListener listener) {
-        this.kosts = kosts;
-        this.kostsFilter = kosts;
+    public Adapter(List<Item> item, Context context, RecyclerViewClickListener listener) {
+        this.item = item;
+        this.ItemFilter = item;
         this.context = context;
         this.mListener = listener;
     }
@@ -47,13 +45,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
     @SuppressLint("CheckResult")
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-
-        holder.mName.setText(kosts.get(position).getNama());
-        holder.mHarga.setText("Rp."+""+kosts.get(position).getHarga()+"/bulan");
-        holder.mAlamat.setText(kosts.get(position).getAlamat_singkat());
-
+        String jenis = item.get(position).getJenis();
+        holder.mName.setText(item.get(position).getNama());
+        holder.mAlamat.setText(item.get(position).getAlamat_singkat());
+        if (jenis.equals("kontrakan")) {
+            holder.mHarga.setText("Rp." + "" + item.get(position).getSetahun() + "/Tahun");
+        } else if (jenis.equals("kost")) {
+            holder.mHarga.setText("Rp." + "" + item.get(position).getHarga() + "/Bulan");
+        }
         Glide.with(context)
-                .load(kosts.get(position).getImage_thumb())
+                .load(item.get(position).getImage_thumb())
                 .apply(new RequestOptions())
                 .into(holder.mPicture);
 
@@ -61,13 +62,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
 
     @Override
     public int getItemCount() {
-        return kosts.size();
+        return item.size();
     }
 
     @Override
     public Filter getFilter() {
         if (filter==null) {
-            filter=new CustomFilter((ArrayList<Kost>) kostsFilter,this);
+            filter = new CustomFilter((ArrayList<Item>) ItemFilter, this);
 
         }
         return filter;
