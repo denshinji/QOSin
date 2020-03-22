@@ -5,59 +5,49 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.mobile.qosin.API.CustomFilter;
-import com.mobile.qosin.Model.Item;
+import com.mobile.qosin.Model.Favorite;
 import com.mobile.qosin.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implements Filterable {
+public class AdapterFav extends RecyclerView.Adapter<AdapterFav.MyViewHolder> {
 
-    public List<Item> item, ItemFilter;
+    public List<Favorite> item;
     private Context context;
-    private RecyclerViewClickListener mListener;
-    CustomFilter filter;
+    private RecyclerViewClickListener myListeners;
 
-    public Adapter(List<Item> item, Context context, RecyclerViewClickListener listener) {
+    public AdapterFav(List<Favorite> item, Context context, RecyclerViewClickListener listener) {
         this.item = item;
-        this.ItemFilter = item;
         this.context = context;
-        this.mListener = listener;
+        this.myListeners = listener;
     }
 
+
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_kost, parent, false);
-        return new MyViewHolder(view, mListener);
+        return new AdapterFav.MyViewHolder(view, myListeners);
     }
 
-    @SuppressLint("CheckResult")
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterFav.MyViewHolder holder, int position) {
         String jenis = item.get(position).getJenis();
-        String gethargakost = item.get(position).getHarga();
         holder.mName.setText(item.get(position).getNama());
         holder.mAlamat.setText(item.get(position).getAlamat_singkat());
-        if (jenis.equals("Kontrakan")) {
+        if (jenis.equals("kontrakan")) {
             holder.mHarga.setText("Rp." + "" + item.get(position).getSetahun() + "/Tahun");
-        } else if (jenis.equals("Kos")) {
-            if (gethargakost != null) {
-                holder.mHarga.setText("Rp." + "" + item.get(position).getHarga() + "/Bulan");
-            } else {
-                holder.mHarga.setText("Rp." + "" + item.get(position).getSetahun() + "/Tahun");
-            }
-
+        } else if (jenis.equals("kost")) {
+            holder.mHarga.setText("Rp." + "" + item.get(position).getHarga() + "/Bulan");
         }
         Glide.with(context)
                 .load(item.get(position).getImage_thumb())
@@ -66,35 +56,33 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
 
     }
 
+    @SuppressLint("CheckResult")
+
     @Override
     public int getItemCount() {
         return item.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        if (filter==null) {
-            filter = new CustomFilter((ArrayList<Item>) ItemFilter, this);
 
-        }
-        return filter;
+    public interface RecyclerViewClickListener {
+        void onRowClick(View view, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private RecyclerViewClickListener mListener;
+        private AdapterFav.RecyclerViewClickListener myListenerss;
         private ImageView mPicture;
         private TextView mName, mHarga, mAlamat;
         private RelativeLayout mRowContainer;
 
-        public MyViewHolder(View itemView, RecyclerViewClickListener listener) {
+        public MyViewHolder(View itemView, AdapterFav.RecyclerViewClickListener listener) {
             super(itemView);
             mPicture = itemView.findViewById(R.id.img_item_photo);
             mName = itemView.findViewById(R.id.item_namacontent);
             mHarga = itemView.findViewById(R.id.item_harga);
             mAlamat = itemView.findViewById(R.id.item_rate);
             mRowContainer = itemView.findViewById(R.id.rv_item);
-            mListener = listener;
+            myListenerss = listener;
             mRowContainer.setOnClickListener(this);
         }
 
@@ -102,17 +90,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.rv_item:
-                    mListener.onRowClick(mRowContainer, getAdapterPosition());
+                    myListenerss.onRowClick(mRowContainer, getAdapterPosition());
                     break;
 
                 default:
                     break;
             }
         }
-    }
-
-    public interface RecyclerViewClickListener {
-        void onRowClick(View view, int position);
     }
 
 }

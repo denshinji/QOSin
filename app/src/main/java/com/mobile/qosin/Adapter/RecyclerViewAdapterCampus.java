@@ -58,23 +58,8 @@ public class RecyclerViewAdapterCampus extends RecyclerView.Adapter<RecyclerView
                     Intent intent = new Intent(v.getContext(), ActivityCampus.class);
                     intent.putExtra("campus", campus);
                     v.getContext().startActivity(intent);
-                } else if (mDesc.get(position).equals("PNP")) {
-                    campus = "PNP";
-                    Intent intent = new Intent(v.getContext(), ActivityCampus.class);
-                    intent.putExtra("campus", campus);
-                    v.getContext().startActivity(intent);
                 } else if (mDesc.get(position).equals("UNP")) {
                     campus = "UNP";
-                    Intent intent = new Intent(v.getContext(), ActivityCampus.class);
-                    intent.putExtra("campus", campus);
-                    v.getContext().startActivity(intent);
-                } else if (mDesc.get(position).equals("UNES")) {
-                    campus = "UNES";
-                    Intent intent = new Intent(v.getContext(), ActivityCampus.class);
-                    intent.putExtra("campus", campus);
-                    v.getContext().startActivity(intent);
-                } else if (mDesc.get(position).equals("BUNG HATTA")) {
-                    campus = "UBH";
                     Intent intent = new Intent(v.getContext(), ActivityCampus.class);
                     intent.putExtra("campus", campus);
                     v.getContext().startActivity(intent);

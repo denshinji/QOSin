@@ -54,12 +54,12 @@ public class ActivityCampus extends AppCompatActivity {
             @Override
             public void onRowClick(View view, final int position) {
 
-                if (KampusList.get(position).getJenis().equals("kost")) {
+                if (KampusList.get(position).getJenis().equals("Kos")) {
                     Intent intent = new Intent(ActivityCampus.this, DetailActivityKost.class);
                     intent.putExtra(DetailActivityKost.KOST_KEY, KampusList.get(position));
                     startActivity(intent);
                 }
-                if (KampusList.get(position).getJenis().equals("kontrakan")) {
+                if (KampusList.get(position).getJenis().equals("Kontrakan")) {
                     Intent intent = new Intent(ActivityCampus.this, DetailActivityKontrakan.class);
                     intent.putExtra(DetailActivityKontrakan.KONTRAKAN_KEY, KampusList.get(position));
                     startActivity(intent);

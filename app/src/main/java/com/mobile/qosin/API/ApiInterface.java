@@ -15,20 +15,20 @@ import retrofit2.http.POST;
 
 public interface ApiInterface {
 
-    @POST("get_kost_pria.php")
+    @POST("data_pria.php")
     Call<List<Item>> getPets();
 
-    @POST("get_kost_wanita.php")
+    @POST("data_perempuan.php")
     Call<List<Item>> get_kost_wanita();
 
-    @POST("get_kontrakan.php")
+    @POST("data_kontrakan.php")
     Call<List<Item>> get_kontrakan();
 
-    @POST("get_all.php")
+    @POST("data.php")
     Call<List<Item>> get_all();
 
     @FormUrlEncoded
-    @POST("get_itemcampus.php")
+    @POST("data_campus.php")
     Call<List<Item>> get_itemcampus(@Field("campus") String campus);
 
 

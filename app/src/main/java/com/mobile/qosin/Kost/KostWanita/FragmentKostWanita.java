@@ -100,8 +100,7 @@ public class FragmentKostWanita extends Fragment {
             public void onRowClick(View view, final int position) {
 
                 Intent intent = new Intent(getContext(), DetailActivityKost.class);
-                intent.putExtra("id", ItemList.get(position).getId());
-                intent.putExtra("nama", ItemList.get(position).getNama());
+                intent.putExtra(DetailActivityKost.KOST_KEY, ItemList.get(position));
                 startActivity(intent);
 
             }

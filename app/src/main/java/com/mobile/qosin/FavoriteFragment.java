@@ -1,22 +1,39 @@
 package com.mobile.qosin;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.mobile.qosin.Tools.SessionManager;
+import com.mobile.qosin.Activity.DetailActivityKontrakan;
+import com.mobile.qosin.Activity.DetailActivityKost;
+import com.mobile.qosin.Adapter.AdapterFav;
+import com.mobile.qosin.Db.FavoriteDBHelper;
+import com.mobile.qosin.Model.Favorite;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FavoriteFragment extends Fragment {
-
-    private SessionManager sessionManager;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private ProgressBar pb;
+    private List<Favorite> favorites;
+    private AdapterFav.RecyclerViewClickListener listener;
+    private FavoriteDBHelper favoriteDBhelper;
+    private ImageView img_empty;
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -28,81 +45,48 @@ public class FavoriteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
-       /* sessionManager = new SessionManager(getActivity());
-        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        searchView = view.findViewById(R.id.searchview_kontrakan);
-        pb = view.findViewById(R.id.pb_frag_kontrakan);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                adapter.getFilter().filter(query);
-                return false;
-            }
+        recyclerView = view.findViewById(R.id.list_view_fav);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        favorites = new ArrayList<>();
+        favoriteDBhelper = new FavoriteDBHelper(getActivity());
+        favoriteDBhelper.getReadableDatabase();
+        favorites = favoriteDBhelper.getAllFavorite();
+        adapter = new AdapterFav(favorites, getActivity(), listener);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        pb = view.findViewById(R.id.pb_frag_fav);
+        img_empty = view.findViewById(R.id.img_no_data_fav);
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-        recyclerView = view.findViewById(R.id.list_view_kontrakan);
-
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-
-        listener = new Adapter.RecyclerViewClickListener() {
+        listener = new AdapterFav.RecyclerViewClickListener() {
             @Override
             public void onRowClick(View view, final int position) {
 
-                Intent intent = new Intent(getContext(), DetailActivityKost.class);
-                intent.putExtra("id", KostList.get(position).getId());
-                intent.putExtra("nama", KostList.get(position).getNama());
-                startActivity(intent);
+                if (favorites.get(position).getJenis().equals("kost")) {
+                    Intent intent = new Intent(getContext(), DetailActivityKost.class);
+                    intent.putExtra(DetailActivityKost.KOST_KEY, favorites.get(position));
+                    startActivity(intent);
+                }
+                if (favorites.get(position).getJenis().equals("kontrakan")) {
+                    Intent intent = new Intent(getContext(), DetailActivityKontrakan.class);
+                    intent.putExtra(DetailActivityKontrakan.KONTRAKAN_KEY, favorites.get(position));
+                    startActivity(intent);
+                }
 
             }
-        }; */
+        };
+
+
+        if (favorites.isEmpty()) {
+            img_empty.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+            pb.setVisibility(View.GONE);
+        }
 
         return view;
     }
 
-    /*
-    public void getKontrakan() {
-        pb.setVisibility(View.VISIBLE);
-        recyclerView.setVisibility(View.GONE);
-
-        Call<List<Kost>> call = apiInterface.getPets();
-        call.enqueue(new Callback<List<Kost>>() {
-            @Override
-            public void onResponse(Call<List<Kost>> call, Response<List<Kost>> response) {
-                KostList = response.body();
-                Log.i(MainActivity.class.getSimpleName(), response.body().toString());
-                adapter = new Adapter(KostList, getContext(), listener);
-                recyclerView.setAdapter(adapter);
-                pb.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<List<Kost>> call, Throwable t) {
-                Toast.makeText(getContext(), "Terjadi kesalahan saat memuat data, Coba periksa Koneksi Internet Anda",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getKontrakan();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-     */
 }

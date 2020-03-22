@@ -85,14 +85,9 @@ public class Dashboard extends Fragment {
     private void initrvcampusandbutton() {
         mImage3.add(R.drawable.unand);
         mDesc.add("UNAND");
-        mImage3.add(R.drawable.poli);
-        mDesc.add("PNP");
         mImage3.add(R.drawable.unp);
         mDesc.add("UNP");
-        mImage3.add(R.drawable.eka);
-        mDesc.add("UNES");
-        mImage3.add(R.drawable.bunghatta);
-        mDesc.add("BUNG HATTA");
+
 
         mImage4.add(R.mipmap.icon_kost2);
         mDesc2.add("KOST");

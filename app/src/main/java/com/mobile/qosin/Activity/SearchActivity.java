@@ -82,12 +82,12 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onRowClick(View view, final int position) {
 
-                if (AllItem.get(position).getJenis().equals("kost")) {
+                if (AllItem.get(position).getJenis().equals("Kos")) {
                     Intent intent = new Intent(SearchActivity.this, DetailActivityKost.class);
                     intent.putExtra(DetailActivityKost.KOST_KEY, AllItem.get(position));
                     startActivity(intent);
                 }
-                if (AllItem.get(position).getJenis().equals("kontrakan")) {
+                if (AllItem.get(position).getJenis().equals("Kontrakan")) {
                     Intent intent = new Intent(SearchActivity.this, DetailActivityKontrakan.class);
                     intent.putExtra(DetailActivityKontrakan.KONTRAKAN_KEY, AllItem.get(position));
                     startActivity(intent);
