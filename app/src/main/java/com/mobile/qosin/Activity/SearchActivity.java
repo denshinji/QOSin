@@ -82,14 +82,21 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onRowClick(View view, final int position) {
 
+
                 if (AllItem.get(position).getJenis().equals("Kos")) {
+                    String intentkost = "KOST";
                     Intent intent = new Intent(SearchActivity.this, DetailActivityKost.class);
                     intent.putExtra(DetailActivityKost.KOST_KEY, AllItem.get(position));
+                    intent.putExtra(DetailActivityKost.FAV_KEY, AllItem.get(position));
+                    intent.putExtra("iFav", intentkost);
                     startActivity(intent);
                 }
                 if (AllItem.get(position).getJenis().equals("Kontrakan")) {
+                    String intentkontrakan = "KONTRAKAN";
                     Intent intent = new Intent(SearchActivity.this, DetailActivityKontrakan.class);
                     intent.putExtra(DetailActivityKontrakan.KONTRAKAN_KEY, AllItem.get(position));
+                    intent.putExtra(DetailActivityKost.FAV_KEY, AllItem.get(position));
+                    intent.putExtra("iFav", intentkontrakan);
                     startActivity(intent);
                 }
 

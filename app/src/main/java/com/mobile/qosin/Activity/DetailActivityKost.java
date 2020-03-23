@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 public class DetailActivityKost extends AppCompatActivity {
     public static String KOST_KEY = "Kost_key";
+    public static String FAV_KEY = "Fav_key";
     ArrayList<String> foto_kost = new ArrayList<>();
     SliderView slk;
     SQLiteDatabase mdb;
@@ -39,6 +40,7 @@ public class DetailActivityKost extends AppCompatActivity {
     private AppCompatActivity activity = DetailActivityKost.this;
     private ConstraintLayout btn_pesan;
     private Item item;
+    private Favorite fav;
     private FavoriteDBHelper favoriteDBHelper;
     private TextView t_namakost, t_hargakost, t_wilayah, t_kamar_sisa, t_ukuran_kamar, t_kamar_mandi, t_waktu_kunci, t_ac, t_wifi, t_listrik, t_bawa_hewan, t_parkiran_motor, t_parkiran_mobil, t_fasilitas, t_kampus, t_minimal, t_update;
 
@@ -98,61 +100,123 @@ public class DetailActivityKost extends AppCompatActivity {
         t_minimal = findViewById(R.id.dt_minimalbulan_kost);
         t_update = findViewById(R.id.dt_timeupdate_kost);
         Intent intent = getIntent();
-        Item kost = intent.getParcelableExtra(KOST_KEY);
-        jenis = kost.getJenis();
-        setahun = kost.getSetahun();
-        banyak_kamar_mandi = kost.getBanyak_kamar_mandi();
-        namakost = kost.getNama();
-        t_namakost.setText(namakost);
-        wilayah = kost.getAlamat_singkat();
-        t_wilayah.setText(wilayah);
-        kamarsisa = kost.getKamar_tersisa();
-        t_kamar_sisa.setText(kamarsisa + " Kamar Tersisa");
-        ukuran_kamar = kost.getUkuran_kamar();
-        t_ukuran_kamar.setText(": " + kost.getUkuran_kamar());
-        kamar_mandi = kost.getKamar_mandi();
-        t_kamar_mandi.setText(": " + kamar_mandi);
-        waktu_kunci = kost.getAkses_kunci();
-        t_waktu_kunci.setText(": " + waktu_kunci);
-        ac = kost.getAc();
-        t_ac.setText(": " + ac);
-        id = kost.getId();
-        listrik = kost.getListrik();
-        t_listrik.setText(": " + listrik);
-        wifi = kost.getWifi();
-        t_wifi.setText(": " + wifi);
-        bawa_hewan = kost.getBawa_hewan();
-        t_bawa_hewan.setText(": " + bawa_hewan);
-        parkiran_motor = kost.getParkiran_motor();
-        t_parkiran_motor.setText(": " + parkiran_motor);
-        parkiran_mobil = kost.getParkiran_mobil();
-        t_parkiran_mobil.setText(": " + parkiran_mobil);
-        fasilitas_tambahan = kost.getDeskripsi();
-        if (TextUtils.isEmpty(fasilitas_tambahan)) {
-            t_fasilitas.setText(": -");
-        } else {
-            t_fasilitas.setText(": " + fasilitas_tambahan);
+        String pn = intent.getStringExtra("iFav");
+        if (pn.equals("FAV")) {
+            Favorite kost = intent.getParcelableExtra(FAV_KEY);
+            jenis = kost.getJenis();
+            setahun = kost.getSetahun();
+            banyak_kamar_mandi = kost.getBanyak_kamar_mandi();
+            namakost = kost.getNama();
+            t_namakost.setText(namakost);
+            wilayah = kost.getAlamat_singkat();
+            t_wilayah.setText(wilayah);
+            kamarsisa = kost.getKamar_tersisa();
+            t_kamar_sisa.setText(kamarsisa + " Kamar Tersisa");
+            ukuran_kamar = kost.getUkuran_kamar();
+            t_ukuran_kamar.setText(": " + kost.getUkuran_kamar());
+            kamar_mandi = kost.getKamar_mandi();
+            t_kamar_mandi.setText(": " + kamar_mandi);
+            waktu_kunci = kost.getAkses_kunci();
+            t_waktu_kunci.setText(": " + waktu_kunci);
+            ac = kost.getAc();
+            t_ac.setText(": " + ac);
+            id = kost.getId();
+            listrik = kost.getListrik();
+            t_listrik.setText(": " + listrik);
+            wifi = kost.getWifi();
+            t_wifi.setText(": " + wifi);
+            bawa_hewan = kost.getBawa_hewan();
+            t_bawa_hewan.setText(": " + bawa_hewan);
+            parkiran_motor = kost.getParkiran_motor();
+            t_parkiran_motor.setText(": " + parkiran_motor);
+            parkiran_mobil = kost.getParkiran_mobil();
+            t_parkiran_mobil.setText(": " + parkiran_mobil);
+            fasilitas_tambahan = kost.getDeskripsi();
+            if (TextUtils.isEmpty(fasilitas_tambahan)) {
+                t_fasilitas.setText(": -");
+            } else {
+                t_fasilitas.setText(": " + fasilitas_tambahan);
+            }
+            kampus = kost.getKampus();
+            t_kampus.setText(kampus);
+            minimal_bayar = kost.getBulanan();
+            t_minimal.setText(minimal_bayar);
+            update = kost.getTanggal_post();
+            t_update.setText(update);
+            gender = kost.getGender();
+            hargakost = kost.getHarga();
+            if (hargakost == null) {
+                hargakost = kost.getSetahun();
+            }
+            t_hargakost.setText("Rp." + hargakost + "/bulan");
+            image_cover = kost.getImage_thumb();
+            image_depan = kost.getImage_depan();
+            image_kamar_mandi = kost.getImage_kamar();
+            image_kamar = kost.getImage_luar();
+            foto_kost.add(image_cover);
+            foto_kost.add(image_depan);
+            foto_kost.add(image_kamar);
+            foto_kost.add(image_kamar_mandi);
         }
-        kampus = kost.getKampus();
-        t_kampus.setText(kampus);
-        minimal_bayar = kost.getBulanan();
-        t_minimal.setText(minimal_bayar);
-        update = kost.getTanggal_post();
-        t_update.setText(update);
-        gender = kost.getGender();
-        hargakost = kost.getHarga();
-        if (hargakost == null) {
-            hargakost = kost.getSetahun();
+        if (pn.equals("KOST")) {
+            Item kost = intent.getParcelableExtra(KOST_KEY);
+            jenis = kost.getJenis();
+            setahun = kost.getSetahun();
+            banyak_kamar_mandi = kost.getBanyak_kamar_mandi();
+            namakost = kost.getNama();
+            t_namakost.setText(namakost);
+            wilayah = kost.getAlamat_singkat();
+            t_wilayah.setText(wilayah);
+            kamarsisa = kost.getKamar_tersisa();
+            t_kamar_sisa.setText(kamarsisa + " Kamar Tersisa");
+            ukuran_kamar = kost.getUkuran_kamar();
+            t_ukuran_kamar.setText(": " + kost.getUkuran_kamar());
+            kamar_mandi = kost.getKamar_mandi();
+            t_kamar_mandi.setText(": " + kamar_mandi);
+            waktu_kunci = kost.getAkses_kunci();
+            t_waktu_kunci.setText(": " + waktu_kunci);
+            ac = kost.getAc();
+            t_ac.setText(": " + ac);
+            id = kost.getId();
+            listrik = kost.getListrik();
+            t_listrik.setText(": " + listrik);
+            wifi = kost.getWifi();
+            t_wifi.setText(": " + wifi);
+            bawa_hewan = kost.getBawa_hewan();
+            t_bawa_hewan.setText(": " + bawa_hewan);
+            parkiran_motor = kost.getParkiran_motor();
+            t_parkiran_motor.setText(": " + parkiran_motor);
+            parkiran_mobil = kost.getParkiran_mobil();
+            t_parkiran_mobil.setText(": " + parkiran_mobil);
+            fasilitas_tambahan = kost.getDeskripsi();
+            if (TextUtils.isEmpty(fasilitas_tambahan)) {
+                t_fasilitas.setText(": -");
+            } else {
+                t_fasilitas.setText(": " + fasilitas_tambahan);
+            }
+            kampus = kost.getKampus();
+            t_kampus.setText(kampus);
+            minimal_bayar = kost.getBulanan();
+            t_minimal.setText(minimal_bayar);
+            update = kost.getTanggal_post();
+            t_update.setText(update);
+            gender = kost.getGender();
+            hargakost = kost.getHarga();
+            if (hargakost == null) {
+                hargakost = kost.getSetahun();
+            }
+            t_hargakost.setText("Rp." + hargakost + "/bulan");
+            image_cover = kost.getImage_thumb();
+            image_depan = kost.getImage_depan();
+            image_kamar_mandi = kost.getImage_kamar();
+            image_kamar = kost.getImage_luar();
+            foto_kost.add(image_cover);
+            foto_kost.add(image_depan);
+            foto_kost.add(image_kamar);
+            foto_kost.add(image_kamar_mandi);
+
         }
-        t_hargakost.setText("Rp." + hargakost + "/bulan");
-        image_cover = kost.getImage_thumb();
-        image_depan = kost.getImage_depan();
-        image_kamar_mandi = kost.getImage_kamar();
-        image_kamar = kost.getImage_luar();
-        foto_kost.add(image_cover);
-        foto_kost.add(image_depan);
-        foto_kost.add(image_kamar);
-        foto_kost.add(image_kamar_mandi);
+
     }
 
     private void getSliderFotoDetail() {

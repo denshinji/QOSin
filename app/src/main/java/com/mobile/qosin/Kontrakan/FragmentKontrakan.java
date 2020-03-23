@@ -97,9 +97,10 @@ public class FragmentKontrakan extends Fragment {
         listener = new Adapter.RecyclerViewClickListener() {
             @Override
             public void onRowClick(View view, final int position) {
-
+                String intentkontrakan = "KONTRAKAN";
                 Intent intent = new Intent(getContext(), DetailActivityKontrakan.class);
                 intent.putExtra(DetailActivityKontrakan.KONTRAKAN_KEY, KontrakanList.get(position));
+                intent.putExtra("iFav", intentkontrakan);
                 startActivity(intent);
 
             }

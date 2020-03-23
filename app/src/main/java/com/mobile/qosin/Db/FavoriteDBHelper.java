@@ -170,10 +170,10 @@ public class FavoriteDBHelper extends SQLiteOpenHelper {
                 FavoriteContract.Favorites.C__KAMAR
         };
         String sortOrder =
-                FavoriteContract.Favorites._ID + " ASC";
+                FavoriteContract.Favorites._ID + " DESC";
         List<Favorite> favoriteList = new ArrayList<>();
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
 

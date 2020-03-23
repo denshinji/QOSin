@@ -87,6 +87,12 @@ public class Dashboard extends Fragment {
         mDesc.add("UNAND");
         mImage3.add(R.drawable.unp);
         mDesc.add("UNP");
+        mImage3.add(R.drawable.segera);
+        mDesc.add("SOON");
+        mImage3.add(R.drawable.segera);
+        mDesc.add("SOON");
+        mImage3.add(R.drawable.segera);
+        mDesc.add("SOON");
 
 
         mImage4.add(R.mipmap.icon_kost2);

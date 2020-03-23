@@ -5,34 +5,32 @@
     android:layout_height="match_parent"
     tools:context=".Activity.SearchActivity">
 
-    <Button
-        android:id="@+id/btn_back_search"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorHijau" />
 
-    <SearchView
-        android:id="@+id/searchview_all"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/rv_search"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
-        android:layout_toEndOf="@id/btn_back_search"
-        android:background="@android:color/white"
-        android:backgroundTint="@android:color/transparent"
-        android:focusable="false"
-        android:iconifiedByDefault="false"
-        android:queryHint="Masukan judul postingan" />
+        android:elevation="2dp">
 
+        <SearchView
+            android:id="@+id/searchview_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/white"
+            android:backgroundTint="@android:color/transparent"
+            android:focusable="false"
+            android:iconifiedByDefault="false"
+            android:queryHint="Masukan judul postingan" />
+    </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/searchview_all"
+        android:layout_below="@+id/rv_search"
         android:visibility="visible"
         tools:listitem="@layout/item_kost" />
 

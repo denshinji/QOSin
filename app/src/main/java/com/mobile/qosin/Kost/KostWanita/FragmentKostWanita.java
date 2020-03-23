@@ -98,9 +98,10 @@ public class FragmentKostWanita extends Fragment {
         listener = new Adapter.RecyclerViewClickListener() {
             @Override
             public void onRowClick(View view, final int position) {
-
+                String intentkost = "KOST";
                 Intent intent = new Intent(getContext(), DetailActivityKost.class);
                 intent.putExtra(DetailActivityKost.KOST_KEY, ItemList.get(position));
+                intent.putExtra("iFav", intentkost);
                 startActivity(intent);
 
             }
