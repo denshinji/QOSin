@@ -1,4 +1,4 @@
-package com.mobile.qosin.Dashboard;
+package com.mobile.qosin.Fragment;
 
 
 import android.os.Bundle;
@@ -29,12 +29,13 @@ import java.util.HashMap;
  * A simple {@link Fragment} subclass.
  */
 public class Dashboard extends Fragment {
-    private TextView nama,email;
+    private TextView nama, email;
     private SessionManager sessionManager;
     private ArrayList<Integer> mImage3 = new ArrayList<>();
     private ArrayList<String> mDesc = new ArrayList<>();
     private ArrayList<Integer> mImage4 = new ArrayList<>();
     private ArrayList<String> mDesc2 = new ArrayList<>();
+
     public Dashboard() {
         // Required empty public constructor
     }
@@ -44,7 +45,7 @@ public class Dashboard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         sessionManager = new SessionManager(getActivity());
         nama = view.findViewById(R.id.get_nama);
         email = view.findViewById(R.id.get_email);
@@ -59,7 +60,7 @@ public class Dashboard extends Fragment {
         slp.setSliderAdapter(new SliderPromo(getContext()));
         slp.setIndicatorAnimation(IndicatorAnimations.WORM);
         slp.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-        HashMap<String , String> user = sessionManager.getUserDetail();
+        HashMap<String, String> user = sessionManager.getUserDetail();
         String mName = user.get(SessionManager.USERNAME);
         String getname = "Hai " + mName;
         String getmail = "Mau cari apa hari ini ?";
@@ -79,7 +80,7 @@ public class Dashboard extends Fragment {
         recyclerViewbutton.setAdapter(adapterbutton);
         initrvcampusandbutton();
 
-    return view;
+        return view;
     }
 
     private void initrvcampusandbutton() {
@@ -88,11 +89,7 @@ public class Dashboard extends Fragment {
         mImage3.add(R.drawable.unp);
         mDesc.add("UNP");
         mImage3.add(R.drawable.segera);
-        mDesc.add("SOON");
-        mImage3.add(R.drawable.segera);
-        mDesc.add("SOON");
-        mImage3.add(R.drawable.segera);
-        mDesc.add("SOON");
+        mDesc.add("");
 
 
         mImage4.add(R.mipmap.icon_kost2);
@@ -102,7 +99,6 @@ public class Dashboard extends Fragment {
         mImage4.add(R.mipmap.icon_event2);
         mDesc2.add("EVENT");
     }
-
 
 
 }

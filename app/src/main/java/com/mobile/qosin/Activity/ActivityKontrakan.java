@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.mobile.qosin.Kontrakan.FragmentKontrakan;
+import com.mobile.qosin.Fragment.FragmentKontrakan;
 import com.mobile.qosin.R;
 
 public class ActivityKontrakan extends AppCompatActivity {

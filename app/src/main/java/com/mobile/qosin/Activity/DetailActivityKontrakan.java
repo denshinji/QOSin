@@ -31,6 +31,9 @@ public class DetailActivityKontrakan extends AppCompatActivity {
     public static String FAV_KEY = "Fav_key";
     ArrayList<String> foto_kontrakan = new ArrayList<>();
     SQLiteDatabase mkdb;
+    SliderView slkn;
+    ConstraintLayout btn_pesan_kontrakan;
+    TextView t_namakontrakan, t_hargakontrakan, t_wilayah, t_kamar_sisa, t_ukuran_kamar, t_kamar_mandi, t_waktu_kunci, t_ac, t_wifi, t_listrik, t_bawa_hewan, t_parkiran_motor, t_parkiran_mobil, t_fasilitas, t_kampus, t_minimal, t_update;
     private String namakontrakan, wilayah, kamarjumlah, ukuran_kamar, jenis, kamar_mandi, waktu_kunci, ac, wifi, listrik, bawa_hewan, parkiran_motor,
             parkiran_mobil, fasilitas_tambahan, kampus, minimal_bayar, update, hargakost, image_cover, image_depan, image_kamar,
             image_kamar_mandi, gender, banyak_kamar_mandi, setahun;
@@ -38,9 +41,6 @@ public class DetailActivityKontrakan extends AppCompatActivity {
     private AppCompatActivity activity = DetailActivityKontrakan.this;
     private FavoriteDBHelper favoriteDBHelper;
     private Item item;
-    SliderView slkn;
-    ConstraintLayout btn_pesan_kontrakan;
-    TextView t_namakontrakan, t_hargakontrakan, t_wilayah, t_kamar_sisa, t_ukuran_kamar, t_kamar_mandi, t_waktu_kunci, t_ac, t_wifi, t_listrik, t_bawa_hewan, t_parkiran_motor, t_parkiran_mobil, t_fasilitas, t_kampus, t_minimal, t_update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

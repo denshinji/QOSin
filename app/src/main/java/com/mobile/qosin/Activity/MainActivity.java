@@ -18,22 +18,20 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.mobile.qosin.Adapter.CustomBottomBar;
 import com.mobile.qosin.Adapter.ItemAdapter;
-import com.mobile.qosin.Dashboard.Dashboard;
-import com.mobile.qosin.FavoriteFragment;
+import com.mobile.qosin.Fragment.Dashboard;
+import com.mobile.qosin.Fragment.FavoriteFragment;
 import com.mobile.qosin.Model.CustomBottomItem;
 import com.mobile.qosin.R;
 import com.mobile.qosin.Tools.SessionManager;
 
 public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemSelectorInterface {
+    public static final int HOME = 0;
+    public static final int FAVORITE = 1;
+    public static final int PROFILE = 2;
     private boolean doubleBackToExitPressedOnce = false;
     private SessionManager sessionManager;
     private CustomBottomBar customBottomBar;
     private TextView titlename;
-    public static final int HOME = 0;
-    public static final int FAVORITE = 1;
-    public static final int PROFILE = 2;
-
-
 
     @SuppressLint("ResourceType")
 
@@ -62,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
         customBottomBar.hideDivider();
         customBottomBar.apply(HOME);
     }
+
     @SuppressLint("ResourceType")
     private void initItems() {
         CustomBottomItem home = new CustomBottomItem(HOME, R.drawable.icon_dashboard_home, getString(R.string.home_title), getString(R.color.colorItemBackground), getString(R.color.colorHijau));
@@ -72,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
         customBottomBar.addItem(favorite);
         customBottomBar.addItem(profile);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -91,8 +91,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
 
     @Override
     public void onBackPressed() {
-        if(doubleBackToExitPressedOnce)
-        {
+        if (doubleBackToExitPressedOnce) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -107,17 +106,16 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }
 
 
-
     @Override
     public void itemSelect(int selectedID) {
         Fragment selectedFragment = null;
-        switch (selectedID){
+        switch (selectedID) {
             case HOME:
                 selectedFragment = new Dashboard();
                 titlename.setText("QOSin");
@@ -127,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.ItemS
                 titlename.setText("Favorite List");
                 break;
             case PROFILE:
-                 selectedFragment = new Account();
+                selectedFragment = new Account();
                 titlename.setText("Account");
                 break;
         }

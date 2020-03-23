@@ -336,7 +336,4 @@ public class DetailActivityKost extends AppCompatActivity {
     }
 
 
-
-
-
 }

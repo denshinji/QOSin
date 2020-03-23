@@ -6,13 +6,6 @@
     android:background="@android:color/black"
     tools:context=".Tools.DetailFoto">
 
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/ic_arrow_back_black_24dp" />
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/slider_detail_foto"

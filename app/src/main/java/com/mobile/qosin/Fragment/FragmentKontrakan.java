@@ -1,4 +1,4 @@
-package com.mobile.qosin.Kost.KostWanita;
+package com.mobile.qosin.Fragment;
 
 
 import android.content.Intent;
@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobile.qosin.API.ApiClient;
 import com.mobile.qosin.API.ApiInterface;
-import com.mobile.qosin.Activity.DetailActivityKost;
+import com.mobile.qosin.Activity.DetailActivityKontrakan;
 import com.mobile.qosin.Activity.MainActivity;
 import com.mobile.qosin.Adapter.Adapter;
 import com.mobile.qosin.Model.Item;
@@ -34,19 +34,19 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentKostWanita extends Fragment {
+public class FragmentKontrakan extends Fragment {
 
-
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private Adapter adapter;
-    private ProgressBar pbw;
-    private SearchView searchView;
-    private ImageView img_empty;
-    private List<Item> ItemList;
     ApiInterface apiInterface;
     Adapter.RecyclerViewClickListener listener;
-    public FragmentKostWanita() {
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private Adapter adapterKontrakan;
+    private ProgressBar pb;
+    private SearchView searchView;
+    private ImageView img_empty_kontrakan;
+    private List<Item> KontrakanList;
+
+    public FragmentKontrakan() {
         // Required empty public constructor
     }
 
@@ -55,81 +55,78 @@ public class FragmentKostWanita extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_kost, container, false);
+        View view = inflater.inflate(R.layout.fragment_kontrakan, container, false);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-
-        recyclerView = view.findViewById(R.id.list_view);
-        pbw = view.findViewById(R.id.pb_frag_kost);
-        img_empty = view.findViewById(R.id.img_no_data_kostp);
-        searchView = view.findViewById(R.id.searchview);
+        searchView = view.findViewById(R.id.searchview_kontrakan);
+        pb = view.findViewById(R.id.pb_frag_kontrakan);
+        img_empty_kontrakan = view.findViewById(R.id.img_no_data_kontrakan);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                adapter.getFilter().filter(query);
-                if (adapter.getItemCount() == 0) {
+                adapterKontrakan.getFilter().filter(query);
+                if (adapterKontrakan.getItemCount() == 0) {
                     recyclerView.setVisibility(View.GONE);
-                    img_empty.setVisibility(View.VISIBLE);
+                    img_empty_kontrakan.setVisibility(View.VISIBLE);
                 } else if (query.isEmpty()) {
                     recyclerView.setVisibility(View.VISIBLE);
-                    img_empty.setVisibility(View.GONE);
+                    img_empty_kontrakan.setVisibility(View.GONE);
 
                 }
-
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
+                adapterKontrakan.getFilter().filter(newText);
                 if (newText.isEmpty()) {
                     recyclerView.setVisibility(View.VISIBLE);
-                    img_empty.setVisibility(View.GONE);
-                } else if (adapter.getItemCount() == 0) {
+                    img_empty_kontrakan.setVisibility(View.GONE);
+                } else if (adapterKontrakan.getItemCount() == 0) {
                     recyclerView.setVisibility(View.GONE);
-                    img_empty.setVisibility(View.VISIBLE);
+                    img_empty_kontrakan.setVisibility(View.VISIBLE);
                 }
                 return false;
             }
         });
+        recyclerView = view.findViewById(R.id.list_view_kontrakan);
+
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         listener = new Adapter.RecyclerViewClickListener() {
             @Override
             public void onRowClick(View view, final int position) {
-                String intentkost = "KOST";
-                Intent intent = new Intent(getContext(), DetailActivityKost.class);
-                intent.putExtra(DetailActivityKost.KOST_KEY, ItemList.get(position));
-                intent.putExtra("iFav", intentkost);
+                String intentkontrakan = "KONTRAKAN";
+                Intent intent = new Intent(getContext(), DetailActivityKontrakan.class);
+                intent.putExtra(DetailActivityKontrakan.KONTRAKAN_KEY, KontrakanList.get(position));
+                intent.putExtra("iFav", intentkontrakan);
                 startActivity(intent);
 
             }
         };
 
-
         return view;
     }
 
-    public void getKost(){
-        pbw.setVisibility(View.VISIBLE);
+    public void getKontrakan() {
+        pb.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
-
-        Call<List<Item>> call = apiInterface.get_kost_wanita();
+        Call<List<Item>> call = apiInterface.get_kontrakan();
         call.enqueue(new Callback<List<Item>>() {
             @Override
             public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
-                ItemList = response.body();
-                if (ItemList.isEmpty()) {
+                KontrakanList = response.body();
+                if (KontrakanList.isEmpty()) {
                     recyclerView.setVisibility(View.GONE);
-                    img_empty.setVisibility(View.VISIBLE);
+                    img_empty_kontrakan.setVisibility(View.VISIBLE);
                 }
                 Log.i(MainActivity.class.getSimpleName(), response.body().toString());
-                adapter = new Adapter(ItemList, getContext(), listener);
-                recyclerView.setAdapter(adapter);
-                pbw.setVisibility(View.GONE);
+                adapterKontrakan = new Adapter(KontrakanList, getContext(), listener);
+                recyclerView.setAdapter(adapterKontrakan);
+                pb.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
-                adapter.notifyDataSetChanged();
+                adapterKontrakan.notifyDataSetChanged();
             }
 
             @Override
@@ -140,9 +137,17 @@ public class FragmentKostWanita extends Fragment {
         });
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
-        getKost();
+
+        getKontrakan();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 }

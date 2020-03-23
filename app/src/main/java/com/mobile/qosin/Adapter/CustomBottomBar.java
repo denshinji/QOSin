@@ -11,13 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mobile.qosin.Model.CustomBottomItem;
 import com.mobile.qosin.R;
 
-
 import java.util.ArrayList;
 
 public class CustomBottomBar {
+    private final int ITEM_LIMIT = 5;
     private ItemAdapter.ItemSelectorInterface itemSelectorInterface;
     private Context context;
-    private final int ITEM_LIMIT = 5;
     private CardView custom_bottom_bar_parent;
     private RecyclerView custom_recycler_view;
     private View custom_divider;

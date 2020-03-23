@@ -8,11 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.mobile.qosin.Kost.TabKost;
+import com.mobile.qosin.Fragment.TabKost;
 import com.mobile.qosin.R;
 
 public class ActivityKost extends AppCompatActivity {
-
 
 
     @Override
@@ -39,10 +38,8 @@ public class ActivityKost extends AppCompatActivity {
 
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             finish();
         }
         return super.onKeyDown(keyCode, event);

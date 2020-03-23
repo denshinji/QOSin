@@ -34,7 +34,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="20dp">
 
             <TextView
                 android:id="@+id/textView2"
@@ -76,9 +76,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/r_layout_namalengkap"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:textColorHint="@android:color/black"
+                app:boxStrokeColor="@color/colorHijau"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.521"
                 app:layout_constraintStart_toStartOf="parent"
@@ -88,10 +92,7 @@
                     android:id="@+id/r_in_namalengkap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
                     android:inputType="textPersonName"
-                    android:paddingTop="5dp"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -99,49 +100,50 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/r_layout_username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:textColorHint="@android:color/black"
+                app:boxStrokeColor="@color/colorHijau"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.521"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:layout_constraintVertical_bias="0.0"
-                app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/colorHijau">
 
                 <EditText
                     android:id="@+id/r_in_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
                     android:inputType="textEmailAddress"
-                    android:paddingTop="5dp"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/r_layout_password"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:textColorHint="@android:color/black"
+                app:boxStrokeColor="@color/colorHijau"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@android:color/black">
+                app:passwordToggleTint="@color/colorHijau">
 
                 <EditText
                     android:id="@+id/r_in_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
                     android:inputType="textPassword"
-                    android:paddingTop="5dp"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>

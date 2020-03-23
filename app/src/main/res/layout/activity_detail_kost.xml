@@ -76,6 +76,7 @@
                         app:mfb_not_favorite_image="@drawable/non_fav"
                         app:mfb_size="60"
                         app:mfb_type="heart" />
+
                     <TextView
                         android:id="@+id/nama_kost"
                         android:layout_width="220dp"
@@ -105,9 +106,9 @@
                         android:id="@+id/detail_alamat_kost"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
                         android:text="Pasar Baru"
                         android:textSize="20sp"
-                        android:layout_marginLeft="5dp"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toBottomOf="@+id/nama_kost" />
 

@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static String URL_LOGIN = "https://qosin.id/api_android/login.php";
     private ProgressBar pr;
-    private EditText username,password;
+    private EditText username, password;
     private SessionManager sessionManager;
     private ImageView btnlogin;
 
@@ -59,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
 
 
     }
@@ -92,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                     sessionManager.createSession(jenis_akun, name, email, username, notelp, id);
-                                    Toast.makeText(LoginActivity.this,"Welcome "+name,Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
@@ -118,12 +117,11 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this, "Email atau Password " + "\n Salah"+toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Email atau Password " + "\n Salah" + toString(), Toast.LENGTH_SHORT).show();
                         pr.setVisibility(View.GONE);
                         btnlogin.setVisibility(View.VISIBLE);
                     }
-                })
-        {
+                }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();

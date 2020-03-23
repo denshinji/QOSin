@@ -1,4 +1,4 @@
-package com.mobile.qosin.Kost.KostPria;
+package com.mobile.qosin.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +31,8 @@ import retrofit2.Response;
 
 public class FragmentKostPria extends Fragment {
 
+    ApiInterface apiInterface;
+    Adapter.RecyclerViewClickListener listener;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapter;
@@ -38,8 +40,7 @@ public class FragmentKostPria extends Fragment {
     private SearchView searchView;
     private ImageView img_empty;
     private List<Item> ItemList;
-    ApiInterface apiInterface;
-    Adapter.RecyclerViewClickListener listener;
+
     public FragmentKostPria() {
         // Required empty public constructor
     }
@@ -49,7 +50,7 @@ public class FragmentKostPria extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_kost, container, false);
+        View view = inflater.inflate(R.layout.fragment_kost, container, false);
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         searchView = view.findViewById(R.id.searchview);
         pb = view.findViewById(R.id.pb_frag_kost);
@@ -57,7 +58,7 @@ public class FragmentKostPria extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-             adapter.getFilter().filter(query);
+                adapter.getFilter().filter(query);
                 if (adapter.getItemCount() == 0) {
                     recyclerView.setVisibility(View.GONE);
                     img_empty.setVisibility(View.VISIBLE);
@@ -104,7 +105,7 @@ public class FragmentKostPria extends Fragment {
         return view;
     }
 
-    public void getKost(){
+    public void getKost() {
         pb.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
 

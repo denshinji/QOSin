@@ -26,6 +26,7 @@
             android:iconifiedByDefault="false"
             android:queryHint="Masukan judul postingan" />
     </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view_all"
         android:layout_width="match_parent"

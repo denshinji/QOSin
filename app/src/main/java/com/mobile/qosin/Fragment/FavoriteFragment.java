@@ -1,4 +1,4 @@
-package com.mobile.qosin;
+package com.mobile.qosin.Fragment;
 
 
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mobile.qosin.Adapter.AdapterFav;
 import com.mobile.qosin.Db.FavoriteDBHelper;
 import com.mobile.qosin.Model.Favorite;
+import com.mobile.qosin.R;
 
 import java.util.ArrayList;
 import java.util.List;

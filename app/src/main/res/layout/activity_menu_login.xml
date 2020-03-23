@@ -9,9 +9,11 @@
 
     <Button
         android:id="@+id/bt_masuk"
-        android:layout_width="160dp"
-        android:layout_height="40dp"
-        android:background="@drawable/ripple_bt_masuk"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:text="MASUK"
+        android:textColor="@color/colorHijau"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,9 +22,11 @@
 
     <Button
         android:id="@+id/bt_daftar"
-        android:layout_width="160dp"
-        android:layout_height="40dp"
-        android:background="@drawable/ripple_bt_daftar"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:text="DAFTAR"
+        android:textColor="@color/colorHijau"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

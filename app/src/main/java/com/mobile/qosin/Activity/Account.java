@@ -24,6 +24,7 @@ public class Account extends Fragment {
     private RelativeLayout logout;
     private TextView name_profile, email_profile;
     private SessionManager sessionManager;
+
     public Account() {
         // Required empty public constructor
     }
@@ -34,7 +35,7 @@ public class Account extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         sessionManager = new SessionManager(getActivity());
-        View view =inflater.inflate(R.layout.fragment_account, container, false);
+        View view = inflater.inflate(R.layout.fragment_account, container, false);
         logout = view.findViewById(R.id.btn_logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +51,7 @@ public class Account extends Fragment {
         name_profile.setText(name);
         email_profile.setText(email);
 
-    return view;
+        return view;
     }
 
 

@@ -5,36 +5,29 @@
     android:layout_height="match_parent">
 
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            style="@style/Widget.MaterialComponents.TabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:tabIndicatorColor="@color/colorHijau"
+            app:tabIndicatorFullWidth="true"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/colorHijau"
+            app:tabTextColor="@color/colorGrey"></com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:background="@android:color/white" />
 
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_movie"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                app:tabIndicatorFullWidth="true"
-                app:tabIndicatorColor="@color/colorHijau"
-                app:tabSelectedTextColor="@color/colorHijau"
-                app:tabTextColor="@color/colorGrey">
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="KOST PRIA" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="KOST WANITA" />
-            </com.google.android.material.tabs.TabLayout>
-
-            <FrameLayout
-                android:id="@+id/fram_tab_movie"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+    </LinearLayout>
 </FrameLayout>

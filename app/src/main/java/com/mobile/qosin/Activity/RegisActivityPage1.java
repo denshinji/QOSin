@@ -56,7 +56,7 @@ public class RegisActivityPage1 extends AppCompatActivity {
                 String mEmail = email.getText().toString().trim();
                 String mNotelp = notelp.getText().toString().trim();
 
-                if (!mUsername.isEmpty() || !mPass.isEmpty() || !mEmail.isEmpty() || !mNama.isEmpty() ||  !mNotelp.isEmpty() ) {
+                if (!mUsername.isEmpty() || !mPass.isEmpty() || !mEmail.isEmpty() || !mNama.isEmpty() || !mNotelp.isEmpty()) {
                     Regist();
                 } else {
                     Toast.makeText(getApplicationContext(), "Pendaftaran gagal silahkan check kembali", Toast.LENGTH_SHORT).show();
@@ -68,7 +68,7 @@ public class RegisActivityPage1 extends AppCompatActivity {
 
     }
 
-    private void Regist(){
+    private void Regist() {
         pr.setVisibility(View.VISIBLE);
         btn_regist.setVisibility(View.GONE);
         final String name = this.mNamalengkaps.trim();
@@ -82,7 +82,7 @@ public class RegisActivityPage1 extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try{
+                        try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
 
@@ -108,9 +108,7 @@ public class RegisActivityPage1 extends AppCompatActivity {
                         pr.setVisibility(View.GONE);
                         btn_regist.setVisibility(View.VISIBLE);
                     }
-                })
-
-        {
+                }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();

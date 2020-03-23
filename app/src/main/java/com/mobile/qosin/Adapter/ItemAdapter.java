@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mobile.qosin.Model.CustomBottomItem;
 import com.mobile.qosin.R;
 
-
 import java.util.ArrayList;
 
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

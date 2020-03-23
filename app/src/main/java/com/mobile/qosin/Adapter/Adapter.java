@@ -25,9 +25,9 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implements Filterable {
 
     public List<Item> item, ItemFilter;
+    CustomFilter filter;
     private Context context;
     private RecyclerViewClickListener mListener;
-    CustomFilter filter;
 
     public Adapter(List<Item> item, Context context, RecyclerViewClickListener listener) {
         this.item = item;
@@ -73,11 +73,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
 
     @Override
     public Filter getFilter() {
-        if (filter==null) {
+        if (filter == null) {
             filter = new CustomFilter((ArrayList<Item>) ItemFilter, this);
 
         }
         return filter;
+    }
+
+    public interface RecyclerViewClickListener {
+        void onRowClick(View view, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -109,10 +113,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
                     break;
             }
         }
-    }
-
-    public interface RecyclerViewClickListener {
-        void onRowClick(View view, int position);
     }
 
 }
