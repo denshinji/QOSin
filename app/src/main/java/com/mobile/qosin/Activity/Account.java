@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -21,7 +21,7 @@ import java.util.HashMap;
  */
 public class Account extends Fragment {
 
-    private RelativeLayout logout;
+    private Button logout;
     private TextView name_profile, email_profile;
     private SessionManager sessionManager;
 

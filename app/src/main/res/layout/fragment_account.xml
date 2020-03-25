@@ -77,185 +77,74 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <RelativeLayout
+                <Button
                     android:id="@+id/rv_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_height="80dp"
+                    android:text="Akun Saya"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/my_profile"
+                    app:iconSize="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"></Button>
 
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/my_profile" />
-
-                    <TextView
-                        android:id="@+id/textView20"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_toRightOf="@+id/imageView5"
-                        android:text="Informasi Akun"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@+id/imageView5"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/colorGrey" />
-                </RelativeLayout>
-
-                <RelativeLayout
+                <Button
                     android:id="@+id/rv_change_pw"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_height="80dp"
+                    android:text="Ubah Password"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/change_pw"
+                    app:iconSize="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_profile">
+                    app:layout_constraintTop_toBottomOf="@+id/rv_profile"></Button>
 
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/change_pw" />
-
-                    <TextView
-                        android:id="@+id/textView21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_toRightOf="@+id/imageView6"
-                        android:text="Ubah Password"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@+id/imageView6"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/colorGrey" />
-                </RelativeLayout>
-
-                <RelativeLayout
+                <Button
                     android:id="@+id/rv_change_call"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_height="80dp"
+                    android:text="Hubungi Kami"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/call"
+                    app:iconSize="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_change_pw">
+                    app:layout_constraintTop_toBottomOf="@+id/rv_change_pw"></Button>
 
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/call" />
-
-                    <TextView
-                        android:id="@+id/textView22"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_toRightOf="@+id/imageView7"
-                        android:text="Hubungi Kami"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@+id/imageView7"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/colorGrey" />
-                </RelativeLayout>
-
-                <RelativeLayout
+                <Button
                     android:id="@+id/rv_about"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_height="80dp"
+                    android:text="Tentang QOSin"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/about"
+                    app:iconSize="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rv_change_call">
 
-                    <ImageView
-                        android:id="@+id/imageView8"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/about" />
+                </Button>
 
-                    <TextView
-                        android:id="@+id/textView23"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_toRightOf="@+id/imageView8"
-                        android:text="Tentang Kami"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@+id/imageView8"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/colorGrey" />
-                </RelativeLayout>
-
-                <RelativeLayout
+                <Button
                     android:id="@+id/btn_logout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_height="80dp"
+                    android:text="Keluar"
+                    android:textAlignment="textStart"
+                    app:icon="@drawable/exit"
+                    app:iconSize="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rv_about">
 
-                    <ImageView
-                        android:id="@+id/imageView9"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/exit" />
-
-                    <TextView
-                        android:id="@+id/textView24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_toRightOf="@+id/imageView9"
-                        android:text="Keluar"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@+id/imageView9"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/colorGrey" />
-                </RelativeLayout>
+                </Button>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

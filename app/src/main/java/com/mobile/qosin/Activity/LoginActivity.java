@@ -3,6 +3,7 @@ package com.mobile.qosin.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -17,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 import com.mobile.qosin.R;
 import com.mobile.qosin.Tools.SessionManager;
 
@@ -34,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username, password;
     private SessionManager sessionManager;
     private ImageView btnlogin;
+    private TextInputLayout tus, tpas;
+    private Button lPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,25 +46,47 @@ public class LoginActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
         pr = findViewById(R.id.pr);
+        tus = findViewById(R.id.layout_nama);
+        tpas = findViewById(R.id.layout_password);
         username = findViewById(R.id.in_nama);
         password = findViewById(R.id.in_password);
         btnlogin = findViewById(R.id.btn_login);
+        loginAction();
+        lupaPassword();
+
+
+    }
+
+    private void lupaPassword() {
+        lPassword = findViewById(R.id.btn_lupapassword);
+        lPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, LupaPasswordActivity.class);
+                startActivity(i);
+            }
+        });
+
+    }
+
+    private void loginAction() {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mUsername = username.getText().toString().trim();
                 String mPass = password.getText().toString().trim();
 
-                if (!mUsername.isEmpty() || !mPass.isEmpty()) {
-                    Login(mUsername, mPass);
+                if (mUsername.isEmpty()) {
+                    tus.setHelperTextEnabled(true);
+                    tus.setHelperText("Username tidak boleh kosong");
+                } else if (mPass.isEmpty()) {
+                    tpas.setHelperTextEnabled(true);
+                    tpas.setHelperText("Password tidak boleh kosong");
                 } else {
-                    username.setError("Masukan Username anda");
-                    password.setError("Masukan Password anda");
+                    Login(mUsername, mPass);
                 }
             }
         });
-
-
     }
 
     private void Login(final String username, final String password) {
@@ -108,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_LONG).show();
                             pr.setVisibility(View.GONE);
                             btnlogin.setVisibility(View.VISIBLE);
                         }
@@ -117,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this, "Email atau Password " + "\n Salah" + toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Email atau Password " + "\n Salah" + toString(), Toast.LENGTH_LONG).show();
                         pr.setVisibility(View.GONE);
                         btnlogin.setVisibility(View.VISIBLE);
                     }

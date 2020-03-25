@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 import com.mobile.qosin.R;
 
 import org.json.JSONException;
@@ -26,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisActivityPage1 extends AppCompatActivity {
-
+    private TextInputLayout te, tno;
     String mNamalengkaps, mPasswords, mUsernames;
     private ProgressBar pr;
     private ImageView btn_regist;
@@ -45,7 +46,8 @@ public class RegisActivityPage1 extends AppCompatActivity {
         mNamalengkaps = getIntent().getStringExtra("nama");
         mPasswords = getIntent().getStringExtra("password");
         mUsernames = getIntent().getStringExtra("username");
-
+        te = findViewById(R.id.r_layout_email);
+        tno = findViewById(R.id.r_layout_nope);
         email = findViewById(R.id.r_in_email);
         btn_regist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,10 +58,15 @@ public class RegisActivityPage1 extends AppCompatActivity {
                 String mEmail = email.getText().toString().trim();
                 String mNotelp = notelp.getText().toString().trim();
 
-                if (!mUsername.isEmpty() || !mPass.isEmpty() || !mEmail.isEmpty() || !mNama.isEmpty() || !mNotelp.isEmpty()) {
-                    Regist();
+                if (mEmail.isEmpty()) {
+                    te.setHelperTextEnabled(true);
+                    te.setHelperText("Email tidak boleh kosong");
+                } else if (mNotelp.isEmpty()) {
+                    tno.setHelperTextEnabled(true);
+                    tno.setHelperText("No Handphone tidak boleh kosong");
                 } else {
-                    Toast.makeText(getApplicationContext(), "Pendaftaran gagal silahkan check kembali", Toast.LENGTH_SHORT).show();
+                    Regist();
+
                 }
 
 
