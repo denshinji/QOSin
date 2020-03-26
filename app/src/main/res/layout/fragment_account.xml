@@ -67,7 +67,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="600dp"
             android:elevation="2dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView4"
@@ -104,7 +104,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/rv_profile"></Button>
 
                 <Button
-                    android:id="@+id/rv_change_call"
+                    android:id="@+id/rv_call"
                     android:layout_width="match_parent"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_height="80dp"
@@ -117,17 +117,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/rv_change_pw"></Button>
 
                 <Button
-                    android:id="@+id/rv_about"
+                    android:id="@+id/rv_website"
                     android:layout_width="match_parent"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_height="80dp"
-                    android:text="Tentang QOSin"
+                    android:text="WEBSITE QOSin"
                     android:textAlignment="textStart"
-                    app:icon="@drawable/about"
+                    app:icon="@drawable/qosin_putih"
                     app:iconSize="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_change_call">
+                    app:layout_constraintTop_toBottomOf="@+id/rv_call">
 
                 </Button>
 
@@ -142,7 +142,7 @@
                     app:iconSize="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_about">
+                    app:layout_constraintTop_toBottomOf="@+id/rv_website">
 
                 </Button>
 

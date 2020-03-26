@@ -12,7 +12,10 @@
         android:roundIcon="@drawable/roundicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.NewPassword"></activity>
+        <activity android:name=".Activity.ListCampusActivity"></activity>
+        <activity android:name=".UbahPasswordActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".Activity.NewPassword" />
         <activity android:name=".Activity.LupaPasswordActivity" />
         <activity android:name=".Tools.DetailFoto" />
         <activity android:name=".Activity.SearchActivity" />

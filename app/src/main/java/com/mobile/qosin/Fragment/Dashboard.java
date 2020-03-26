@@ -1,25 +1,23 @@
 package com.mobile.qosin.Fragment;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mobile.qosin.Activity.ListCampusActivity;
 import com.mobile.qosin.Adapter.RecyclerViewAdapterButton;
-import com.mobile.qosin.Adapter.RecyclerViewAdapterCampus;
-import com.mobile.qosin.Adapter.SliderAbout;
-import com.mobile.qosin.Adapter.SliderPromo;
 import com.mobile.qosin.R;
 import com.mobile.qosin.Tools.SessionManager;
-import com.smarteist.autoimageslider.IndicatorAnimations;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,11 +29,10 @@ import java.util.HashMap;
 public class Dashboard extends Fragment {
     private TextView nama, email;
     private SessionManager sessionManager;
-    private ArrayList<Integer> mImage3 = new ArrayList<>();
-    private ArrayList<String> mDesc = new ArrayList<>();
     private ArrayList<Integer> mImage4 = new ArrayList<>();
     private ArrayList<String> mDesc2 = new ArrayList<>();
-
+    private RecyclerView recyclerViewbutton;
+    private ImageView bannerCampus, bannerAddkost;
     public Dashboard() {
         // Required empty public constructor
     }
@@ -49,48 +46,59 @@ public class Dashboard extends Fragment {
         sessionManager = new SessionManager(getActivity());
         nama = view.findViewById(R.id.get_nama);
         email = view.findViewById(R.id.get_email);
-        SliderView sll = view.findViewById(R.id.slider_template);
-        sll.setSliderAdapter(new SliderAbout(getContext()));
-        sll.startAutoCycle();
-        sll.setScrollTimeInSec(6);
-        sll.setIndicatorAnimation(IndicatorAnimations.WORM);
-        sll.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        recyclerViewbutton = view.findViewById(R.id.rv_button_menu);
+        bannerCampus = view.findViewById(R.id.bannercampus);
+        bannerAddkost = view.findViewById(R.id.banneraddkost);
 
-        SliderView slp = view.findViewById(R.id.slider_template_promo);
-        slp.setSliderAdapter(new SliderPromo(getContext()));
-        slp.setIndicatorAnimation(IndicatorAnimations.WORM);
-        slp.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        initBannerCampus();
+        initrvcampusandbutton();
+        iniRelativePromo();
+        initGetName();
+        initAddKost();
+        return view;
+    }
+
+    private void initAddKost() {
+        bannerAddkost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String number = "+6281371855757";
+                String message = "Hai min saya ingin mendaftarkan usaha tempat tinggal saya ";
+                String url = "https://api.whatsapp.com/send?phone=" + number + "&text=" + message;
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+    }
+
+    private void initBannerCampus() {
+        bannerCampus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ListCampusActivity.class));
+            }
+        });
+    }
+
+    private void initGetName() {
         HashMap<String, String> user = sessionManager.getUserDetail();
         String mName = user.get(SessionManager.USERNAME);
         String getname = "Hai " + mName;
         String getmail = "Mau cari apa hari ini ?";
         nama.setText(getname);
         email.setText(getmail);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_cv2);
-        recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapterCampus adapterf = new RecyclerViewAdapterCampus(getActivity(), mImage3, mDesc);
-        recyclerView.setAdapter(adapterf);
+    }
 
-
+    private void iniRelativePromo() {
         LinearLayoutManager layoutManagerbutton = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerViewbutton = view.findViewById(R.id.rv_button_menu);
         recyclerViewbutton.setLayoutManager(layoutManagerbutton);
         RecyclerViewAdapterButton adapterbutton = new RecyclerViewAdapterButton(getActivity(), mImage4, mDesc2);
         recyclerViewbutton.setAdapter(adapterbutton);
-        initrvcampusandbutton();
-
-        return view;
     }
 
-    private void initrvcampusandbutton() {
-        mImage3.add(R.drawable.unand);
-        mDesc.add("UNAND");
-        mImage3.add(R.drawable.unp);
-        mDesc.add("UNP");
-        mImage3.add(R.drawable.segera);
-        mDesc.add("");
 
+    private void initrvcampusandbutton() {
 
         mImage4.add(R.mipmap.icon_kost2);
         mDesc2.add("KOST");
