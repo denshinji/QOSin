@@ -108,7 +108,6 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONObject object = jsonArray.getJSONObject(i);
 
 
-                                    String jenis_akun = object.getString("jenis_akun").trim();
                                     String id = object.getString("id").trim();
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
@@ -116,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String notelp = object.getString("nope").trim();
 
 
-                                    sessionManager.createSession(jenis_akun, name, email, username, notelp, id);
+                                    sessionManager.createSession(name, email, username, notelp, id);
                                     Toast.makeText(LoginActivity.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

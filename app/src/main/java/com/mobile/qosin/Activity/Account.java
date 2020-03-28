@@ -12,10 +12,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.mobile.qosin.ProfileActivity;
+import com.mobile.qosin.HubungiActivity;
 import com.mobile.qosin.R;
 import com.mobile.qosin.Tools.SessionManager;
-import com.mobile.qosin.UbahPasswordActivity;
 
 import java.util.HashMap;
 
@@ -72,12 +71,7 @@ public class Account extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getContext(), UbahPasswordActivity.class));
                 break;
             case R.id.rv_call:
-                String number = "+6281371855757";
-                String message = "Hai min";
-                String url = "https://api.whatsapp.com/send?phone=" + number + "&text=" + message;
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+                startActivity(new Intent(getContext(), HubungiActivity.class));
                 break;
             case R.id.rv_website:
                 String urlweb = "https://qosin.id/";

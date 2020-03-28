@@ -29,10 +29,9 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createSession(String jenis_akun, String name, String email, String username, String notelp, String id) {
+    public void createSession(String name, String email, String username, String notelp, String id) {
 
         editor.putBoolean(LOGIN, true);
-        editor.putString(JENIS_AKUN, jenis_akun);
         editor.putString(NAME, name);
         editor.putString(ID, id);
         editor.putString(EMAIL, email);
@@ -58,7 +57,6 @@ public class SessionManager {
     public HashMap<String, String> getUserDetail() {
 
         HashMap<String, String> user = new HashMap<>();
-        user.put(JENIS_AKUN, sharedPreferences.getString(JENIS_AKUN, null));
         user.put(NAME, sharedPreferences.getString(NAME, null));
         user.put(EMAIL, sharedPreferences.getString(EMAIL, null));
         user.put(USERNAME, sharedPreferences.getString(USERNAME, null));
