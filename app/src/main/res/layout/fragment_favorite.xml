@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.FavoriteFragment">
 
-    <ProgressBar
-        android:id="@+id/pb_frag_fav"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:visibility="visible" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view_fav"
         android:layout_width="match_parent"
@@ -27,6 +20,6 @@
         android:layout_height="180dp"
         android:layout_gravity="center"
         android:background="@drawable/no_data"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 </FrameLayout>

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.mobile.qosin.HubungiActivity;
 import com.mobile.qosin.R;
 import com.mobile.qosin.Tools.SessionManager;
 

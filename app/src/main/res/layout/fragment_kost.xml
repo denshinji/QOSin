@@ -4,17 +4,10 @@
     android:id="@+id/frame_movie"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorback"
+    android:background="@android:color/white"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:focusedByDefault="true">
-
-    <ProgressBar
-        android:id="@+id/pb_frag_kost"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:visibility="gone" />
 
     <SearchView
         android:id="@+id/searchview"

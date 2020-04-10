@@ -12,7 +12,7 @@
         android:roundIcon="@drawable/roundicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HubungiActivity"></activity>
+        <activity android:name=".Activity.HubungiActivity"></activity>
         <activity android:name=".Activity.ListCampusActivity" />
         <activity android:name=".Activity.UbahPasswordActivity" />
         <activity android:name=".Activity.ProfileActivity" />

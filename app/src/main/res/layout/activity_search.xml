@@ -35,13 +35,6 @@
         android:visibility="visible"
         tools:listitem="@layout/item_kost" />
 
-    <ProgressBar
-        android:id="@+id/pb_frag_search"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/img_no_data_all"

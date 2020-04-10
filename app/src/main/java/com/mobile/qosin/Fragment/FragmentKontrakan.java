@@ -3,12 +3,13 @@ package com.mobile.qosin.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.mobile.qosin.Adapter.Adapter;
 import com.mobile.qosin.Model.Item;
 import com.mobile.qosin.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,26 +43,75 @@ public class FragmentKontrakan extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapterKontrakan;
-    private ProgressBar pb;
     private SearchView searchView;
     private ImageView img_empty_kontrakan;
     private List<Item> KontrakanList;
+    private static final String BUNDLE_RECYCLER_LAYOUT = "recycler_layout";
+    private static String LIST_STATE = "list_state";
+    private Parcelable savedRecyclerLayoutState;
 
     public FragmentKontrakan() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_kontrakan, container, false);
+        if (savedInstanceState != null) {
+            restoreLayoutManagerPosition();
+            KontrakanList = savedInstanceState.getParcelableArrayList(LIST_STATE);
+            savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
+            restoreLayoutManagerPosition();
+            displayRestore(view);
+        } else {
+            display(view);
+        }
 
+
+        return view;
+    }
+
+    private void displayRestore(View view) {
+        recyclerView = view.findViewById(R.id.list_view);
+        adapterKontrakan = new Adapter(KontrakanList, getContext(), listener);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapterKontrakan);
+        restoreLayoutManagerPosition();
+        adapterKontrakan.notifyDataSetChanged();
+    }
+
+    private void restoreLayoutManagerPosition() {
+        if (savedRecyclerLayoutState != null) {
+            recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        }
+    }
+
+    private void display(View view) {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         searchView = view.findViewById(R.id.searchview_kontrakan);
-        pb = view.findViewById(R.id.pb_frag_kontrakan);
         img_empty_kontrakan = view.findViewById(R.id.img_no_data_kontrakan);
+        initSearch(view);
+        recyclerView = view.findViewById(R.id.list_view_kontrakan);
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        listener = new Adapter.RecyclerViewClickListener() {
+            @Override
+            public void onRowClick(View view, final int position) {
+                String intentkontrakan = "KONTRAKAN";
+                Intent intent = new Intent(getContext(), DetailActivityKontrakan.class);
+                intent.putExtra(DetailActivityKontrakan.KONTRAKAN_KEY, KontrakanList.get(position));
+                intent.putExtra("iFav", intentkontrakan);
+                startActivity(intent);
+
+            }
+        };
+        getKontrakan();
+
+    }
+
+    private void initSearch(View view) {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -89,28 +140,16 @@ public class FragmentKontrakan extends Fragment {
                 return false;
             }
         });
-        recyclerView = view.findViewById(R.id.list_view_kontrakan);
+    }
 
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-
-        listener = new Adapter.RecyclerViewClickListener() {
-            @Override
-            public void onRowClick(View view, final int position) {
-                String intentkontrakan = "KONTRAKAN";
-                Intent intent = new Intent(getContext(), DetailActivityKontrakan.class);
-                intent.putExtra(DetailActivityKontrakan.KONTRAKAN_KEY, KontrakanList.get(position));
-                intent.putExtra("iFav", intentkontrakan);
-                startActivity(intent);
-
-            }
-        };
-
-        return view;
+    @Override
+    public void onSaveInstanceState(Bundle outstate) {
+        super.onSaveInstanceState(outstate);
+        outstate.putParcelableArrayList(LIST_STATE, new ArrayList<Item>(KontrakanList.size()));
+        outstate.putParcelable(BUNDLE_RECYCLER_LAYOUT, recyclerView.getLayoutManager().onSaveInstanceState());
     }
 
     public void getKontrakan() {
-        pb.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         Call<List<Item>> call = apiInterface.get_kontrakan();
         call.enqueue(new Callback<List<Item>>() {
@@ -124,10 +163,16 @@ public class FragmentKontrakan extends Fragment {
                 Log.i(MainActivity.class.getSimpleName(), response.body().toString());
                 adapterKontrakan = new Adapter(KontrakanList, getContext(), listener);
                 recyclerView.setAdapter(adapterKontrakan);
-                pb.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
-                adapterKontrakan.notifyDataSetChanged();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapterKontrakan.showShimmer = false;
+                        adapterKontrakan.notifyDataSetChanged();
+                    }
+                }, 5000);
             }
+
 
             @Override
             public void onFailure(Call<List<Item>> call, Throwable t) {
@@ -138,16 +183,4 @@ public class FragmentKontrakan extends Fragment {
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        getKontrakan();
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 }

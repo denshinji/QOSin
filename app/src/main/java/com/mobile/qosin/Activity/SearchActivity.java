@@ -2,10 +2,11 @@ package com.mobile.qosin.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.mobile.qosin.Adapter.Adapter;
 import com.mobile.qosin.Model.Item;
 import com.mobile.qosin.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,19 +33,43 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapterAll;
-    private ProgressBar pb;
     private SearchView searchView;
     private ImageView img_empty_all;
     private List<Item> AllItem;
+    private static final String BUNDLE_RECYCLER_LAYOUT = "recycler_layout";
+    private static String LIST_STATE = "list_state";
+    private Parcelable savedRecyclerLayoutState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        if (savedInstanceState != null) {
+            restoreLayoutManagerPosition();
+            AllItem = savedInstanceState.getParcelableArrayList(LIST_STATE);
+            savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
+            restoreLayoutManagerPosition();
+            displayRestore();
+        } else {
+            display();
+        }
+
+
+    }
+
+    private void displayRestore() {
+        recyclerView = findViewById(R.id.list_view_all);
+        adapterAll = new Adapter(AllItem, getApplicationContext(), listener);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setAdapter(adapterAll);
+        restoreLayoutManagerPosition();
+        adapterAll.notifyDataSetChanged();
+    }
+
+    private void display() {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         searchView = findViewById(R.id.searchview_all);
-        pb = findViewById(R.id.pb_frag_search);
         img_empty_all = findViewById(R.id.img_no_data_all);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -102,10 +128,17 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         };
+        getAll();
+
+    }
+
+    private void restoreLayoutManagerPosition() {
+        if (savedRecyclerLayoutState != null) {
+            recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        }
     }
 
     public void getAll() {
-        pb.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         Call<List<Item>> call = apiInterface.get_all();
         call.enqueue(new Callback<List<Item>>() {
@@ -119,9 +152,14 @@ public class SearchActivity extends AppCompatActivity {
                 Log.i(MainActivity.class.getSimpleName(), response.body().toString());
                 adapterAll = new Adapter(AllItem, getApplicationContext(), listener);
                 recyclerView.setAdapter(adapterAll);
-                pb.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
-                adapterAll.notifyDataSetChanged();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapterAll.showShimmer = false;
+                        adapterAll.notifyDataSetChanged();
+                    }
+                }, 5000);
             }
 
             @Override
@@ -132,17 +170,18 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
-    public void onResume() {
-        super.onResume();
-
-        getAll();
-
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putParcelableArrayList(LIST_STATE, new ArrayList<Item>(AllItem.size()));
+        savedInstanceState.putParcelable(BUNDLE_RECYCLER_LAYOUT, recyclerView.getLayoutManager().onSaveInstanceState());
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        AllItem = savedInstanceState.getParcelableArrayList(LIST_STATE);
+        savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
+        super.onRestoreInstanceState(savedInstanceState);
     }
+
 }

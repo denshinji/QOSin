@@ -11,10 +11,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.mobile.qosin.API.CustomFilter;
 import com.mobile.qosin.Model.Item;
 import com.mobile.qosin.R;
@@ -28,6 +30,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
     CustomFilter filter;
     private Context context;
     private RecyclerViewClickListener mListener;
+    public boolean showShimmer = true;
+    int shimmer_number = 5;
 
     public Adapter(List<Item> item, Context context, RecyclerViewClickListener listener) {
         this.item = item;
@@ -45,30 +49,45 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
     @SuppressLint("CheckResult")
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        String jenis = item.get(position).getJenis();
-        String gethargakost = item.get(position).getHarga();
-        holder.mName.setText(item.get(position).getNama());
-        holder.mAlamat.setText(item.get(position).getAlamat_singkat());
-        if (jenis.equals("Kontrakan")) {
-            holder.mHarga.setText("Rp." + "" + item.get(position).getSetahun() + "/Tahun");
-        } else if (jenis.equals("Kos")) {
-            if (gethargakost != null) {
-                holder.mHarga.setText("Rp." + "" + item.get(position).getHarga() + "/Bulan");
-            } else {
+        if (showShimmer) {
+            holder.shimmerFrameLayout.startShimmer();
+        } else {
+            holder.shimmerFrameLayout.stopShimmer();
+            holder.shimmerFrameLayout.setShimmer(null);
+            String jenis = item.get(position).getJenis();
+            String gethargakost = item.get(position).getHarga();
+            holder.mName.setBackground(null);
+            holder.mName.setText(item.get(position).getNama());
+            holder.mAlamat.setBackground(null);
+            holder.mAlamat.setText(item.get(position).getAlamat_singkat());
+            holder.mTracking.setBackground(null);
+            holder.mTracking.setBackgroundResource(R.drawable.ic_location_on_black_24dp);
+            if (jenis.equals("Kontrakan")) {
+                holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorHijau));
                 holder.mHarga.setText("Rp." + "" + item.get(position).getSetahun() + "/Tahun");
+            } else if (jenis.equals("Kos")) {
+                if (gethargakost != null) {
+                    holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorHijau));
+                    holder.mHarga.setText("Rp." + "" + item.get(position).getHarga() + "/Bulan");
+                } else {
+                    holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorHijau));
+                    holder.mHarga.setText("Rp." + "" + item.get(position).getSetahun() + "/Tahun");
+                }
+
             }
+            holder.mPicture.setBackground(null);
+            Glide.with(context)
+                    .load(item.get(position).getImage_thumb())
+                    .apply(new RequestOptions())
+                    .into(holder.mPicture);
 
         }
-        Glide.with(context)
-                .load(item.get(position).getImage_thumb())
-                .apply(new RequestOptions())
-                .into(holder.mPicture);
-
     }
+
 
     @Override
     public int getItemCount() {
-        return item.size();
+        return showShimmer ? shimmer_number : item.size();
     }
 
     @Override
@@ -87,12 +106,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> implemen
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private RecyclerViewClickListener mListener;
-        private ImageView mPicture;
+        private ImageView mPicture, mTracking;
         private TextView mName, mHarga, mAlamat;
         private RelativeLayout mRowContainer;
+        private ShimmerFrameLayout shimmerFrameLayout;
+        private CardView cardView;
 
         public MyViewHolder(View itemView, RecyclerViewClickListener listener) {
             super(itemView);
+            mTracking = itemView.findViewById(R.id.item_mark);
+            cardView = itemView.findViewById(R.id.cv_harga);
+            shimmerFrameLayout = itemView.findViewById(R.id.shimmer_layout);
             mPicture = itemView.findViewById(R.id.img_item_photo);
             mName = itemView.findViewById(R.id.item_namacontent);
             mHarga = itemView.findViewById(R.id.item_harga);

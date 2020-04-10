@@ -19,6 +19,8 @@
     <color name="grey_20">#cccccc</color>
     <color name="grey_90">#263238</color>
 
+    <color name="shimmer_bg">#dddddd</color>
+
 
     <!--Material color list from https://material.io/guidelines/style/color.html-->
 

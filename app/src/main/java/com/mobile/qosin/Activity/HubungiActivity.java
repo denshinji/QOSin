@@ -1,4 +1,4 @@
-package com.mobile.qosin;
+package com.mobile.qosin.Activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.mobile.qosin.R;
 
 public class HubungiActivity extends AppCompatActivity {
     private Button btn;

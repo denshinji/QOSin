@@ -2,10 +2,11 @@ package com.mobile.qosin.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.mobile.qosin.Adapter.Adapter;
 import com.mobile.qosin.Model.Item;
 import com.mobile.qosin.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,15 +34,45 @@ public class ActivityCampus extends AppCompatActivity {
     private RecyclerView recyclerView_campus;
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapterKampus;
-    private ProgressBar pb_campus;
     private ImageView img_empty_kampus;
     private List<Item> KampusList;
+    private static final String BUNDLE_RECYCLER_LAYOUT = "recycler_layout";
+    private static String LIST_STATE = "list_state";
+    private Parcelable savedRecyclerLayoutState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus);
-        pb_campus = findViewById(R.id.pb_campus);
+        if (savedInstanceState != null) {
+            restoreLayoutManagerPosition();
+            KampusList = savedInstanceState.getParcelableArrayList(LIST_STATE);
+            savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
+            restoreLayoutManagerPosition();
+            displayRestore();
+        } else {
+            display();
+        }
+
+
+    }
+
+    private void displayRestore() {
+        recyclerView_campus = findViewById(R.id.list_view_all);
+        adapterKampus = new Adapter(KampusList, getApplicationContext(), listener);
+        recyclerView_campus.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView_campus.setAdapter(adapterKampus);
+        restoreLayoutManagerPosition();
+        adapterKampus.notifyDataSetChanged();
+    }
+
+    private void restoreLayoutManagerPosition() {
+        if (savedRecyclerLayoutState != null) {
+            recyclerView_campus.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        }
+    }
+
+    private void display() {
         img_empty_kampus = findViewById(R.id.img_no_data_campus);
         recyclerView_campus = findViewById(R.id.list_view_campus);
         Intent i = getIntent();
@@ -73,11 +105,10 @@ public class ActivityCampus extends AppCompatActivity {
                 }
             }
         };
-
+        getItemCampus();
     }
 
     public void getItemCampus() {
-        pb_campus.setVisibility(View.VISIBLE);
         recyclerView_campus.setVisibility(View.GONE);
         Intent i = getIntent();
         String campus = i.getStringExtra("campus");
@@ -88,17 +119,22 @@ public class ActivityCampus extends AppCompatActivity {
             public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
                 KampusList = response.body();
                 if (KampusList.isEmpty()) {
-                    pb_campus.setVisibility(View.GONE);
                     recyclerView_campus.setVisibility(View.GONE);
                     img_empty_kampus.setVisibility(View.VISIBLE);
                 } else {
                     Log.i(MainActivity.class.getSimpleName(), response.body().toString());
                     adapterKampus = new Adapter(KampusList, getApplicationContext(), listener);
                     recyclerView_campus.setAdapter(adapterKampus);
-                    pb_campus.setVisibility(View.GONE);
                     recyclerView_campus.setVisibility(View.VISIBLE);
-                    adapterKampus.notifyDataSetChanged();
                     img_empty_kampus.setVisibility(View.GONE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapterKampus.showShimmer = false;
+                            adapterKampus.notifyDataSetChanged();
+                        }
+                    }, 5000);
+
                 }
             }
 
@@ -106,21 +142,22 @@ public class ActivityCampus extends AppCompatActivity {
             public void onFailure(Call<List<Item>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data, Coba periksa Koneksi Internet Anda",
                         Toast.LENGTH_SHORT).show();
-                pb_campus.setVisibility(View.GONE);
             }
         });
     }
-
     @Override
-    public void onResume() {
-        super.onResume();
-
-        getItemCampus();
-
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putParcelableArrayList(LIST_STATE, new ArrayList<Item>(KampusList.size()));
+        savedInstanceState.putParcelable(BUNDLE_RECYCLER_LAYOUT, recyclerView_campus.getLayoutManager().onSaveInstanceState());
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        KampusList = savedInstanceState.getParcelableArrayList(LIST_STATE);
+        savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
+
+

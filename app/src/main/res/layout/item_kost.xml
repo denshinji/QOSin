@@ -6,6 +6,10 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="350dp"
@@ -19,18 +23,20 @@
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:layout_margin="5dp"
+            android:background="@color/shimmer_bg"
             android:scaleType="fitXY" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:background="@android:color/white"
             android:layout_marginTop="260dp">
 
             <TextView
                 android:id="@+id/item_namacontent"
                 android:layout_width="240dp"
+                android:background="@color/shimmer_bg"
                 android:layout_height="wrap_content"
-                android:text="Kost Buk Titin"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -46,7 +52,8 @@
                 android:layout_height="25dp"
                 android:layout_margin="5dp"
                 android:elevation="10dp"
-                app:cardBackgroundColor="@color/colorHijau"
+                android:id="@+id/cv_harga"
+                app:cardBackgroundColor="@color/shimmer_bg"
                 app:cardCornerRadius="13dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +72,6 @@
                     android:paddingTop="4dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="2dp"
-                    android:text="Rp.1.00000000.000"
                     android:textColor="@android:color/white"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -82,8 +88,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_below="@id/item_namacontent"
-
-                android:background="@drawable/ic_location_on_black_24dp"
+                android:background="@color/shimmer_bg"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/item_rate"
@@ -94,11 +99,11 @@
 
             <TextView
                 android:id="@+id/item_rate"
-                android:layout_width="wrap_content"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_namacontent"
                 android:layout_toEndOf="@+id/item_mark"
-                android:text="Pasar Baru"
+                android:background="@color/shimmer_bg"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.093"
@@ -108,4 +113,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </RelativeLayout>
